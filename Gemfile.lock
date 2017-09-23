@@ -50,6 +50,8 @@ GEM
     aws-sdk-resources (2.3.22)
       aws-sdk-core (= 2.3.22)
     bcrypt (3.1.11)
+    bitmask_attributes (1.0.0)
+      activerecord (>= 3.1)
     builder (3.2.3)
     celluloid (0.17.3)
       celluloid-essentials
@@ -84,8 +86,6 @@ GEM
       activemodel-serializers-xml (~> 1.0)
       activesupport (~> 5.0)
       request_store (~> 1.0)
-    email_validator (1.6.0)
-      activemodel
     erubi (1.6.1)
     faker (1.8.4)
       i18n (~> 0.5)
@@ -219,9 +219,9 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk (~> 2.3.0)
   bcrypt
+  bitmask_attributes
   dotenv-rails
   draper
-  email_validator
   faker
   listen
   paperclip

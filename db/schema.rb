@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923215329) do
+ActiveRecord::Schema.define(version: 20170923220147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,12 @@ ActiveRecord::Schema.define(version: 20170923215329) do
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_visited_places_on_place_id"
     t.index ["user_id"], name: "index_visited_places_on_user_id"
+  end
+
+  create_table "wishes", force: :cascade do |t|
+    t.string "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "comments", "places"

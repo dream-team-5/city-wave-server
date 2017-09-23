@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   delegate :is_basic?, :is_registered?, :is_admin?, to: :decorate
 
+  has_and_belongs_to_many :visited_places, class_name: 'Place', join_table: :visited_places
+
+  has_and_belongs_to_many :saved_places, class_name: 'Place', join_table: :saved_places
+
   bitmask :roles, as: [:admin, :basic, :registered]
 
   has_secure_password validations: false

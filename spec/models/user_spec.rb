@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  it { should have_and_belong_to_many(:visited_places).class_name('Place').join_table 'visited_places' }
+
+  it { should have_and_belong_to_many(:saved_places).class_name('Place').join_table 'saved_places' }
+
   it { should validate_presence_of :roles }
 
   context do

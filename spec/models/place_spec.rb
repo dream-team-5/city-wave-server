@@ -7,6 +7,8 @@ RSpec.describe Place, type: :model do
 
   it { should have_attached_file :photo }
 
+  it { should have_and_belong_to_many :tags }
+
   it { should validate_attachment_presence :photo }
 
   it { should validate_attachment_content_type(:photo).allowing('image/gif', 'image/jpeg', 'image/png') }

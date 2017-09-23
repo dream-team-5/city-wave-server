@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923205758) do
+ActiveRecord::Schema.define(version: 20170923214737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 20170923205758) do
     t.index ["city_id"], name: "index_places_on_city_id"
   end
 
+  create_table "places_tags", force: :cascade do |t|
+    t.bigint "place_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_places_tags_on_place_id"
+    t.index ["tag_id"], name: "index_places_tags_on_tag_id"
+  end
+
   create_table "saved_places", force: :cascade do |t|
     t.bigint "place_id"
     t.uuid "user_id"
@@ -56,6 +65,12 @@ ActiveRecord::Schema.define(version: 20170923205758) do
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_saved_places_on_place_id"
     t.index ["user_id"], name: "index_saved_places_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -77,6 +92,8 @@ ActiveRecord::Schema.define(version: 20170923205758) do
 
   add_foreign_key "places", "categories"
   add_foreign_key "places", "cities"
+  add_foreign_key "places_tags", "places"
+  add_foreign_key "places_tags", "tags"
   add_foreign_key "saved_places", "places"
   add_foreign_key "saved_places", "users"
   add_foreign_key "visited_places", "places"

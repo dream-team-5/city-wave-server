@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :saved_places, class_name: 'Place', join_table: :saved_places
 
+  has_many :comments
+
   bitmask :roles, as: [:admin, :basic, :registered]
 
   has_secure_password validations: false

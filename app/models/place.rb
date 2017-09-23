@@ -3,6 +3,8 @@ class Place < ApplicationRecord
 
   belongs_to :category
 
+  has_many :comments
+
   has_attached_file :photo
 
   has_and_belongs_to_many :tags

@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :comments
 
+  has_many :auth_tokens
+
   bitmask :roles, as: [:admin, :basic, :registered]
 
   has_secure_password validations: false

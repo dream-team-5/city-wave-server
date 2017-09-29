@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923220147) do
+ActiveRecord::Schema.define(version: 20170929081053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "auth_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_auth_tokens_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -107,6 +114,7 @@ ActiveRecord::Schema.define(version: 20170923220147) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "auth_tokens", "users"
   add_foreign_key "comments", "places"
   add_foreign_key "comments", "users"
   add_foreign_key "places", "categories"

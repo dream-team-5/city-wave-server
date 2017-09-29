@@ -1,4 +1,6 @@
 class Place < ApplicationRecord
+  include PgSearch
+
   belongs_to :city
 
   belongs_to :category
@@ -23,4 +25,6 @@ class Place < ApplicationRecord
   validates :location, presence: true
 
   validates :price, numericality: { greater_than: 0 }, allow_nil: true
+
+  pg_search_scope :search_by_name, against: :name, using: :trigram
 end

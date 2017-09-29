@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929081053) do
+ActiveRecord::Schema.define(version: 20170929085911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+  enable_extension "pg_trgm"
 
   create_table "auth_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20170929081053) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.index "name gist_trgm_ops", name: "index_places_on_name_gist_trgm_ops", using: :gist
     t.index ["category_id"], name: "index_places_on_category_id"
     t.index ["city_id"], name: "index_places_on_city_id"
   end

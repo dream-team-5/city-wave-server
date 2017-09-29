@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  delegate :is_basic?, :is_registered?, :is_admin?, to: :decorate
+  delegate :basic?, :registered?, :admin?, to: :decorate
 
   has_and_belongs_to_many :visited_places, class_name: 'Place', join_table: :visited_places
 
@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   validates :roles, presence: true
 
-  with_options if: :is_registered? do |model|
+  with_options if: :registered? do |model|
     model.validate do |record|
       record.errors.add :password, :blank unless record.password_digest.present?
     end

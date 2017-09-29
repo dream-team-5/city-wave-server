@@ -1,15 +1,15 @@
 class UserDecorator < Draper::Decorator
   delegate_all
 
-  def is_basic?
+  def basic?
     model.roles? :basic
   end
 
-  def is_registered?
+  def registered?
     model.roles? :registered
   end
 
-  def is_admin?
+  def admin?
     model.roles? :admin
   end
 end

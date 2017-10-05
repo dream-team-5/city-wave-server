@@ -9,10 +9,9 @@ gem 'dotenv-rails'
 gem 'pundit'
 gem 'pg'
 gem 'pg_search'
-gem 'redis'
-gem 'sidekiq'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3.0'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   gem 'rspec-rails'

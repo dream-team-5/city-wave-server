@@ -4,7 +4,7 @@ module AuthorizedController
   included do
     include Pundit
 
-    rescue_from(Pundit::NotAuthorizedError) { head :forbidden }
+    rescue_from(Pundit::NotAuthorizedError) { |e| render_error e.to_s, 403 }
 
     before_action -> { authorize resource }, except: :index
 

@@ -70,7 +70,7 @@ module RESTController
   end
 
   def create_failure_callback
-    render :errors
+    render_error resource.errors, 400
   end
 
   def update_success_callback
@@ -78,7 +78,7 @@ module RESTController
   end
 
   def update_failure_callback
-    render :errors
+    render_error resource.errors, 400
   end
 
   def destroy_success_callback
@@ -86,6 +86,6 @@ module RESTController
   end
 
   def destroy_failure_callback
-    render :errors
+    render_error resource.errors, 400
   end
 end

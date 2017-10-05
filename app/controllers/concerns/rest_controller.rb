@@ -18,7 +18,7 @@ module RESTController
   end
 
   def update
-    if resource.update resource_params
+    if resource.update update_resource_params
       update_success_callback
     else
       update_failure_callback
@@ -54,12 +54,16 @@ module RESTController
   end
 
   def build_resource
-    @resource = resource_model.new resource_params
+    @resource = resource_model.new create_resource_params
   end
 
   def resource_params
     ActionController::Parameters.new
   end
+
+  alias_method :update_resource_params, :resource_params
+
+  alias_method :create_resource_params, :resource_params
 
   def create_success_callback
     render

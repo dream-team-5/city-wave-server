@@ -9,12 +9,12 @@ RSpec.shared_examples :show do |params|
 
   include_examples :authorize_resource
 
+  include_examples :has_policy
+
   describe '#show' do
     before { get :show, params: request_params, format: request_format }
 
     it { should render_template :show }
-
-    include_examples :has_policy
   end
 end
 
@@ -29,14 +29,14 @@ RSpec.shared_examples :new do |params|
 
   include_examples :authorize_resource
 
+  include_examples :has_policy
+
   describe '#new' do
     before { expect(subject).to receive(:initialize_resource) }
 
     before { get :new, params: request_params, format: request_format }
 
     it { should render_template :new }
-
-    include_examples :has_policy
   end
 end
 
@@ -49,6 +49,8 @@ RSpec.shared_examples :create do |params|
 
   include_examples :authorize_resource
 
+  include_examples :has_policy
+
   describe '#create' do
     before { expect(subject).to receive(:build_resource) }
 
@@ -58,8 +60,6 @@ RSpec.shared_examples :create do |params|
       before { post :create, params: request_params, format: request_format }
 
       it { success.call }
-
-      include_examples :has_policy
     end
 
     context do
@@ -68,8 +68,6 @@ RSpec.shared_examples :create do |params|
       before { post :create, params: request_params, format: request_format }
 
       it { failure.call }
-
-      include_examples :has_policy
     end
   end
 end
@@ -85,12 +83,12 @@ RSpec.shared_examples :edit do |params|
 
   include_examples :authorize_resource
 
+  include_examples :has_policy
+
   describe '#edit' do
     before { get :edit, params: request_params, format: request_format }
 
     it { should render_template :edit }
-
-    include_examples :has_policy
   end
 end
 
@@ -103,27 +101,25 @@ RSpec.shared_examples :update do |params|
 
   include_examples :authorize_resource
 
+  include_examples :has_policy
+
   describe '#update' do
-    before { expect(subject).to receive(:resource_params).and_return(:resource_params) }
+    before { expect(subject).to receive(:update_resource_params).and_return(:update_resource_params) }
 
     context do
-      before { expect(resource).to receive(:update).with(:resource_params).and_return(true) }
+      before { expect(resource).to receive(:update).with(:update_resource_params).and_return(true) }
 
       before { patch :update, params: request_params, format: request_format }
 
       it { success.call }
-
-      include_examples :has_policy
     end
 
     context do
-      before { expect(resource).to receive(:update).with(:resource_params).and_return(false) }
+      before { expect(resource).to receive(:update).with(:update_resource_params).and_return(false) }
 
       before { patch :update, params: request_params, format: request_format }
 
       it { failure.call }
-
-      include_examples :has_policy
     end
   end
 end
@@ -139,14 +135,14 @@ RSpec.shared_examples :destroy do |params|
 
   include_examples :authorize_resource
 
+  include_examples :has_policy
+
   describe '#destroy' do
     before { expect(resource).to receive(:destroy) }
 
     before { delete :destroy, params: request_params, format: request_format }
 
     it { success.call }
-
-    include_examples :has_policy
   end
 end
 
@@ -159,6 +155,8 @@ RSpec.shared_examples :index do |params|
 
   include_examples :authenticate_user
 
+  include_examples :has_policy
+
   describe '#index' do
     before { expect(subject).to receive(:collection).and_return(:collection) }
 
@@ -167,8 +165,6 @@ RSpec.shared_examples :index do |params|
     before { get :index, params: request_params, format: request_format }
 
     it { should render_template :index }
-
-    include_examples :has_policy
   end
 end
 
@@ -186,6 +182,8 @@ end
 
 RSpec.shared_examples :authenticate_user do
   before { expect(subject).to receive(:authenticate) unless skip_authenticate }
+
+  before { expect(subject).to_not receive(:authenticate) if skip_authenticate }
 end
 
 RSpec.shared_examples :authorize_resource do
@@ -195,7 +193,7 @@ RSpec.shared_examples :authorize_resource do
 end
 
 RSpec.shared_examples :has_policy do
-  it { expect { Pundit::PolicyFinder.new(described_model).policy! }.to_not raise_error }
+  before { expect { Pundit::PolicyFinder.new(described_model).policy! }.to_not raise_error }
 end
 
 class RSpec::Core::ExampleGroup

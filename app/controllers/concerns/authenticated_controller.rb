@@ -12,7 +12,7 @@ module AuthenticatedController
     @current_user ||= User
       .joins(:auth_tokens)
       .where(auth_tokens: { value: params[:auth_token] })
-      .first
+      .first if params[:auth_token].present?
   end
 
   def authenticate

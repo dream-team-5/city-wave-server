@@ -185,7 +185,7 @@ RSpec.shared_examples :parse_params do |params|
 end
 
 RSpec.shared_examples :authenticate_user do
-  before { expect(subject).to receive(:authenticate!) unless skip_authenticate }
+  before { expect(subject).to receive(:authenticate) unless skip_authenticate }
 end
 
 RSpec.shared_examples :authorize_resource do

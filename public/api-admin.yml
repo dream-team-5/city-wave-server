@@ -1,1 +1,1169 @@
-/home/just806me/Documents/projects/city-wave/api-admin.yml
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: City Wave API
+host: localhost:3000
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /categories:
+    get:
+      tags:
+        - Category
+      description: Get list of categories
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/Category'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - Category
+      description: Create category
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: category
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Category'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Category'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /categories/{id}:
+    get:
+      tags:
+        - Category
+      description: View category
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Category'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    patch:
+      tags:
+        - Category
+      description: Update category
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: category
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Category'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Category'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      tags:
+        - Category
+      description: Delete category
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /cities:
+    get:
+      tags:
+        - City
+      description: Get list of cities
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/City'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - City
+      description: Create city
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: city
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/City'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/City'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /cities/{id}:
+    get:
+      tags:
+        - City
+      description: View city
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/City'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    patch:
+      tags:
+        - City
+      description: Update city
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: city
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/City'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/City'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      tags:
+        - City
+      description: Delete city
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /places:
+    get:
+      tags:
+        - Place
+      description: Get list of places
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PlaceShort'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - Place
+      description: Create place
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: place
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Place'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Place'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /places/{id}:
+    get:
+      tags:
+        - Place
+      description: View place
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Place'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    patch:
+      tags:
+        - Place
+      description: Update place
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: place
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Place'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Place'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      tags:
+        - Place
+      description: Delete place
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /tags:
+    get:
+      tags:
+        - Tag
+      description: Get list of tags
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/Tag'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - Tag
+      description: Create tag
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: tag
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Tag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Tag'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /tags/{id}:
+    get:
+      tags:
+        - Tag
+      description: View tag
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Tag'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    patch:
+      tags:
+        - Tag
+      description: Update tag
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: tag
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Tag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Tag'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      tags:
+        - Tag
+      description: Delete tag
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /wishes:
+    get:
+      tags:
+        - Wish
+      description: Get list of wishes
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/Wish'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - Wish
+      description: Create wish
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: wish
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Wish'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Wish'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /wishes/{id}:
+    get:
+      tags:
+        - Wish
+      description: View wish
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Wish'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    patch:
+      tags:
+        - Wish
+      description: Update wish
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: wish
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Wish'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Wish'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      tags:
+        - Wish
+      description: Delete wish
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+definitions:
+  ErrorResponse:
+    type: object
+    properties:
+      ok:
+        type: boolean
+        default: false
+      description:
+        type: string
+        example: error description
+  Category:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: назва категорії
+  City:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: назва міста
+  Place:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      city_id:
+        type: integer
+        example: 1
+      category_id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: назва місця
+      description:
+        type: string
+        example: опис місця
+      address:
+        type: string
+        example: адреса місця
+      location:
+        type: array
+        items:
+          type: integer
+      contacts:
+        type: string
+        example: контакти
+      price:
+        type: integer
+        example: 42.25
+      open_hours:
+        $ref: '#/definitions/OpenHours'
+      duration:
+        $ref: '#/definitions/Duration'
+      photo:
+        # TODO: How to send photo?
+        type: string
+        example: ''
+      tag_ids:
+        type: array
+        items:
+          type: integer
+  PlaceShort:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: назва місця
+  Tag:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: назва тегу
+  Wish:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      text:
+        type: string
+        example: текст побажання
+  Duration:
+    type: object
+    properties:
+      begin:
+        type: string
+        example: '2017-10-05T17:31:55.338+03:00'
+      end:
+        type: string
+        example: '2017-11-05T17:31:55.338+03:00'
+  OpenHours:
+    type: object
+    properties:
+      begin:
+        type: string
+        example: '08:30:00'
+      end:
+        type: string
+        example: '19:00:00'

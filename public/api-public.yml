@@ -1,1 +1,1025 @@
-/home/just806me/Documents/projects/city-wave/api-public.yml
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: City Wave API
+host: localhost:3000
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /session:
+    post:
+      tags:
+        - Session
+        - Registered user
+      description: Sign in to existing registered profile
+      parameters:
+        - name: session
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: string
+                example: 3db06aa7-9cd7-42d5-b7b7-1dfd8ca48262
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: User not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /profile:
+    get:
+      tags:
+        - Profile
+        - Basic user
+      description: Get profile
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/User'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - Profile
+        - Basic user
+      description: Create new basic profile
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: string
+                example: 3db06aa7-9cd7-42d5-b7b7-1dfd8ca48262
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    patch:
+      tags:
+        - Profile
+        - Basic user
+        - Registered user
+      description: Change username, password (registered user) or upgrade to registered user (Basic user, also username is required)
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: profile
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - password
+            properties:
+              password:
+                type: string
+              username:
+                type: string
+              new_password:
+                type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/User'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /saved_places:
+    get:
+      tags:
+        - Places
+        - Basic user
+      description: Get saved places
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: string
+          required: false
+        - name: search
+          in: query
+          type: string
+          required: false
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PlaceShort'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - Places
+        - Basic user
+      description: Save a place
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: saved_place
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - place_id
+            properties:
+              place_id:
+                type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Place'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /visited_places:
+    get:
+      tags:
+        - Places
+        - Basic user
+      description: Get visited places
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: string
+          required: false
+        - name: search
+          in: query
+          type: string
+          required: false
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PlaceShort'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - Places
+        - Basic user
+      description: Visit a place
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: visited_place
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - place_id
+            properties:
+              place_id:
+                type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Place'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /comments:
+    get:
+      tags:
+        - Comments
+        - Registered user
+      description: Get list of comments from user
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: string
+          required: false
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/Comment'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /cities:
+    get:
+      tags:
+        - Cities
+        - Basic user
+      description: Get list of cities
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/City'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /cities/{city_id}/places:
+    get:
+      tags:
+        - Cities
+        - Places
+        - Basic user
+      description: Get list of places in city optionaly filtered by search
+      parameters:
+        - name: city_id
+          in: path
+          type: integer
+          required: true
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: string
+          required: false
+        - name: search
+          in: query
+          type: string
+          required: false
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PlaceShort'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: City not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /places/{id}:
+    get:
+      tags:
+        - Places
+        - Basic user
+      description: Get place
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PlaceFull'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Place not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /places/{place_id}/comments:
+    get:
+      tags:
+        - Places
+        - Comments
+        - Registered user
+      description: Get list of comments in place
+      parameters:
+        - name: place_id
+          in: path
+          type: integer
+          required: true
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: string
+          required: false
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/Comment'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Place not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - Places
+        - Comments
+        - Registered user
+      description: Create new comment to place
+      parameters:
+        - name: place_id
+          in: path
+          type: integer
+          required: true
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: comment
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - text
+            properties:
+              text:
+                type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Comment'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Place not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /tags:
+    get:
+      tags:
+        - Tags
+        - Basic user
+      description: Get tags
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/Tag'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /tags/{tag_id}/places:
+    get:
+      tags:
+        - Tags
+        - Places
+        - Basic user
+      description: Get list of places with tag optionaly filtered by search
+      parameters:
+        - name: tag_id
+          in: path
+          type: integer
+          required: true
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: string
+          required: false
+        - name: search
+          in: query
+          type: string
+          required: false
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PlaceShort'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Tag not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /categories:
+    get:
+      tags:
+        - Categories
+        - Basic user
+      description: Get list of categories
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/Category'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /categories/{category_id}/places:
+    get:
+      tags:
+        - Categories
+        - Places
+        - Basic user
+      description: Get list of places with category optionaly filtered by search
+      parameters:
+        - name: category_id
+          in: path
+          type: integer
+          required: true
+        - name: token
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: string
+          required: false
+        - name: search
+          in: query
+          type: string
+          required: false
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PlaceShort'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Category not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /wishes:
+    get:
+      tags:
+        - Wishes
+        - Basic user
+      description: Get a random wish
+      parameters:
+        - name: token
+          in: query
+          type: string
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                default: true
+              result:
+                $ref: '#/definitions/Wish'
+        401:
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Unknown error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+definitions:
+  ErrorResponse:
+    type: object
+    properties:
+      ok:
+        type: boolean
+        default: false
+      description:
+        type: string
+        example: error description
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+        example: a65bd2d0-c762-4dcd-8f2d-d1f542eaf46c
+      username:
+        type: string
+        example: username
+  City:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: Вінниця
+  Category:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: Інше
+  PlaceShort:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      category:
+        $ref: '#/definitions/Category'
+      name:
+        type: string
+        example: Зоопарк "Подільський"
+      address:
+        type: string
+        example: вул. Тарногродського, 9
+      price:
+        type: integer
+        example: 24.25
+      photo_url:
+        type: string
+        example: http://placehold.it/300x300.png
+      saved:
+        type: boolean
+        example: true
+      visited:
+        type: boolean
+        example: true
+  PlaceFull:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      city:
+        $ref: '#/definitions/City'
+      category:
+        $ref: '#/definitions/Category'
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+      name:
+        type: string
+        example: Зоопарк "Подільський"
+      description:
+        type: string
+        example: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id placerat augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec at euismod massa. Fusce eu lacus justo. Ut varius sit amet nibh vel vehicula. Sed ullamcorper, purus id fermentum luctus, nisi leo molestie magna, consequat hendrerit risus nulla vitae nisl. Maecenas sem erat, scelerisque vitae arcu sed, pellentesque interdum leo.
+      address:
+        type: string
+        example: вул. Тарногродського, 9
+      location:
+        type: array
+        items:
+          type: integer
+      contacts:
+        type: string
+        example: 'Телефон: 0432 619 255'
+      price:
+        type: integer
+        example: 24.25
+      photo_url:
+        type: string
+        example: http://placehold.it/300x300.png
+      open_hours:
+        $ref: '#/definitions/OpenHours'
+      duration:
+        $ref: '#/definitions/Duration'
+      saved:
+        type: boolean
+        example: true
+      visited:
+        type: boolean
+        example: true
+  Tag:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: цікаве
+  Comment:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      text:
+        type: string
+        example: коментар
+      date:
+        type: string
+        example: '2017-10-05T17:31:55.338+03:00'
+      user:
+        $ref: '#/definitions/User'
+      place:
+        $ref: '#/definitions/PlaceShort'
+  Wish:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      text:
+        type: string
+        example: побажання
+  Duration:
+    type: object
+    properties:
+      begin:
+        type: string
+        example: '2017-10-05T17:31:55.338+03:00'
+      end:
+        type: string
+        example: '2017-11-05T17:31:55.338+03:00'
+  OpenHours:
+    type: object
+    properties:
+      begin:
+        type: string
+        example: '08:30:00'
+      end:
+        type: string
+        example: '19:00:00'

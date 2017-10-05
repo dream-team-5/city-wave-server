@@ -9,10 +9,19 @@ module AuthenticatedController
 
   private
   def current_user
-    @current_user ||= User
-      .joins(:auth_tokens)
-      .where(auth_tokens: { value: params[:auth_token] })
-      .first if params[:auth_token].present?
+    if params[:auth_token].present?
+      @current_user ||= find_user_by_auth_token || find_basic_user_by_id
+    end
+  end
+
+  def find_user_by_auth_token
+    User.joins(:auth_tokens).find_by auth_tokens: { id: params[:auth_token] }
+  end
+
+  def find_basic_user_by_id
+    user = User.find_by id: params[:auth_token]
+
+    user unless user&.registered?
   end
 
   def authenticate

@@ -240,7 +240,7 @@ paths:
                 type: boolean
                 default: true
               result:
-                $ref: '#/definitions/Place'
+                $ref: '#/definitions/PlaceFull'
         400:
           description: Bad request
           schema:
@@ -335,7 +335,7 @@ paths:
                 type: boolean
                 default: true
               result:
-                $ref: '#/definitions/Place'
+                $ref: '#/definitions/PlaceFull'
         400:
           description: Bad request
           schema:

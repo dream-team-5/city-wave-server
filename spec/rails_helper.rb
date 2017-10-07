@@ -24,7 +24,6 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.include Permitter
   config.include Paperclip::Shoulda::Matchers
 
   [:controller, :view, :request].each do |type|

@@ -61,9 +61,13 @@ module RESTController
     ActionController::Parameters.new
   end
 
-  alias_method :update_resource_params, :resource_params
+  def update_resource_params
+    resource_params
+  end
 
-  alias_method :create_resource_params, :resource_params
+  def create_resource_params
+    resource_params
+  end
 
   def create_success_callback
     render

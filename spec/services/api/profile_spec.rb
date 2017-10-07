@@ -5,6 +5,8 @@ RSpec.describe Api::Profile do
 
   subject { described_class.new user }
 
+  it { should delegate_method(:id).to :user }
+
   describe '#save' do
     context do
       before { expect(user).to receive(:save).and_return true }

@@ -1,3 +1,3 @@
-class <%= class_name %>Policy <  < ApplicationPolicy
+class <%= class_name %>Policy < ApplicationPolicy
 
 end

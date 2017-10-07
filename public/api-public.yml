@@ -115,7 +115,7 @@ paths:
         - Profile
         - Basic user
         - Registered user
-      description: Change username, password (registered user) or upgrade to registered user (Basic user, also username is required)
+      description: 'Registered user: change username, password. Basic user: upgrade to registered user'
       parameters:
         - name: token
           in: query
@@ -126,14 +126,10 @@ paths:
           required: true
           schema:
             type: object
-            required:
-              - password
             properties:
               password:
                 type: string
               username:
-                type: string
-              new_password:
                 type: string
       responses:
         200:

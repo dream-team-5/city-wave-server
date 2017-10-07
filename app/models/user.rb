@@ -5,9 +5,9 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :saved_places, class_name: 'Place', join_table: :saved_places
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
-  has_many :auth_tokens
+  has_many :auth_tokens, dependent: :destroy
 
   bitmask :roles, as: [:admin, :basic, :registered]
 

@@ -5,7 +5,7 @@ RSpec.describe Place, type: :model do
 
   it { should belong_to :category }
 
-  it { should have_many :comments }
+  it { should have_many(:comments).dependent :destroy }
 
   it { should have_attached_file :photo }
 

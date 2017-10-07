@@ -5,9 +5,9 @@ RSpec.describe User, type: :model do
 
   it { should have_and_belong_to_many(:saved_places).class_name('Place').join_table 'saved_places' }
 
-  it { should have_many :comments }
+  it { should have_many(:comments).dependent :destroy }
 
-  it { should have_many :auth_tokens }
+  it { should have_many(:auth_tokens).dependent :destroy }
 
   it { should validate_presence_of :roles }
 

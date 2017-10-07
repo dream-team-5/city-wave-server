@@ -1,7 +1,7 @@
 class Api::Profile
   attr_reader :password, :username, :errors
 
-  delegate :id, to: :user
+  delegate :id, :username, to: :user, prefix: true
 
   def initialize user
     @user = user

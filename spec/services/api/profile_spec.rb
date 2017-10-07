@@ -5,7 +5,9 @@ RSpec.describe Api::Profile do
 
   subject { described_class.new user }
 
-  it { should delegate_method(:id).to :user }
+  it { should delegate_method(:id).to(:user).with_prefix }
+
+  it { should delegate_method(:username).to(:user).with_prefix }
 
   describe '#save' do
     context do

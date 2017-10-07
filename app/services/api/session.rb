@@ -23,7 +23,7 @@ class Api::Session
 
   private
   def user
-    @user ||= User.find_by username: username
+    @user ||= User.find_by username: username if username.present?
   end
 
   def validate_username
@@ -31,7 +31,9 @@ class Api::Session
   end
 
   def validate_password
-    errors.add :password, I18n.t('errors.messages.invalid') unless user&.authenticate password
+    if password.present? && !user&.authenticate(password)
+      errors.add :password, I18n.t('errors.messages.invalid')
+    end
   end
 
   def create_auth_token

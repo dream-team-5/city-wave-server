@@ -34,9 +34,17 @@ RSpec.describe Api::Session, type: :model do
   end
 
   describe '#user' do
-    before { expect(User).to receive(:find_by).with(username: 'username').and_return :user }
+    context do
+      before { expect(User).to receive(:find_by).with(username: 'username').and_return :user }
 
-    its(:user) { should eq :user }
+      its(:user) { should eq :user }
+    end
+
+    context do
+      subject { described_class.new username: nil }
+
+      its(:user) { should be_nil }
+    end
   end
 
   describe '#validate_username' do
@@ -60,7 +68,7 @@ RSpec.describe Api::Session, type: :model do
   end
 
   describe '#validate_password' do
-    before { expect(subject).to receive(:user).and_return user }
+    before { allow(subject).to receive(:user).and_return user }
 
     context do
       let(:user) { nil }
@@ -88,6 +96,14 @@ RSpec.describe Api::Session, type: :model do
       let(:user) { double }
 
       before { expect(user).to receive(:authenticate).with('password').and_return true }
+
+      it { expect { subject.send :validate_password }.to_not change { subject.errors[:password] } }
+    end
+
+    context do
+      let(:user) { nil }
+
+      subject { described_class.new password: nil }
 
       it { expect { subject.send :validate_password }.to_not change { subject.errors[:password] } }
     end

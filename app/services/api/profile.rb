@@ -1,22 +1,28 @@
 class Api::Profile
-  delegate_missing_to :user
+  attr_reader :password, :username, :errors
 
   def initialize user
     @user = user
   end
 
-  def policy_class
-    Api::ProfilePolicy
+  def save
+    valid = user.save
+
+    @errors = user.errors
+
+    valid
   end
 
   def update params
-    if registered?
-      update_registered params
-    elsif basic?
-      create_registered params
+    parse_params params
+
+    if user.registered?
+      update_registered
     else
-      false
+      update_basic
     end
+
+    save
   end
 
   private
@@ -24,21 +30,23 @@ class Api::Profile
     @user ||= User.new roles: :basic
   end
 
-  def create_registered params
-    params = {
-      password: params.require(:password),
-      username: params.require(:username)
-    }
+  def parse_params params
+    @password = params[:password]
 
-    user.roles << :registered
-
-    user.update params
+    @username = params[:username]
   end
 
-  def update_registered params
-    return false unless user.authenticate params.require :password
+  def update_basic
+    user.roles << :registered
 
-    user.update password: params[:new_password],
-                username: params[:username]
+    user.password = password
+
+    user.username = username
+  end
+
+  def update_registered
+    user.password = password if password.present?
+
+    user.username = username if username.present?
   end
 end

@@ -7,7 +7,7 @@ class Api::ProfilesController < ApplicationController
   end
 
   def update_resource_params
-    params.permit :password, :username, :new_password
+    params.permit :password, :username
   end
 
   def resource

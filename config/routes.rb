@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resource :session, only: :create
 
   resources :tags, only: :index
+
+  resources :wishes, only: :index
 end

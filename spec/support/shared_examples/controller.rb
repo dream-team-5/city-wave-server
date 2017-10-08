@@ -198,6 +198,10 @@ end
 
 class RSpec::Core::ExampleGroup
   def described_model
-    described_class.name.gsub(/Controller\z/, '').singularize.constantize
+    if subject.respond_to? :resource_model, true
+      subject.send :resource_model
+    else
+      described_class.name.gsub(/Controller\z/, '').singularize.constantize
+    end
   end
 end

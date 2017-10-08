@@ -4,7 +4,9 @@ module AuthorizedController
   included do
     include Pundit
 
-    rescue_from(Pundit::NotAuthorizedError) { |e| render_error e.to_s, 403 }
+    rescue_from(Pundit::NotAuthorizedError) do |e|
+      render_error "not allowed to #{ e.query } #{ e.record.name }", 403
+    end
 
     before_action -> { authorize resource }, except: :index
 

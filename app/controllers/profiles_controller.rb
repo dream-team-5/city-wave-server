@@ -1,4 +1,4 @@
-class Api::ProfilesController < ApplicationController
+class ProfilesController < ApplicationController
   skip_before_action :authenticate, only: :create
 
   private
@@ -11,6 +11,6 @@ class Api::ProfilesController < ApplicationController
   end
 
   def resource
-    @resource ||= Api::Profile.new current_user
+    @resource ||= Profile.new current_user
   end
 end

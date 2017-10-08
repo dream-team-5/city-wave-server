@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::Profile do
+RSpec.describe Profile do
   let(:user) { stub_model User }
 
   subject { described_class.new user }

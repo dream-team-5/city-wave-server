@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::Session, type: :model do
+RSpec.describe Session, type: :model do
   subject { described_class.new username: 'username', password: 'password' }
 
   it { should validate_presence_of :username }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::SessionsController, type: :controller do
+RSpec.describe SessionsController, type: :controller do
   describe '#resource_params' do
     let(:params) do
       ActionController::Parameters.new username: 'username', password: 'password'

@@ -1,4 +1,4 @@
-class Api::ProfilePolicy < ApplicationPolicy
+class ProfilePolicy < ApplicationPolicy
   def show?
     user.present? && user.basic?
   end

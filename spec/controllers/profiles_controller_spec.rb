@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::ProfilesController, type: :controller do
+RSpec.describe ProfilesController, type: :controller do
   describe '#create_resource_params' do
     its(:create_resource_params) { should be_nil }
   end

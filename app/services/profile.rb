@@ -1,4 +1,4 @@
-class Api::Profile
+class Profile
   attr_reader :password, :username, :errors
 
   delegate :id, :username, to: :user, prefix: true

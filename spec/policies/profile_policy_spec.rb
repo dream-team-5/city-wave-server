@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::ProfilePolicy do
+RSpec.describe ProfilePolicy do
   subject { described_class }
 
   permissions :create? do

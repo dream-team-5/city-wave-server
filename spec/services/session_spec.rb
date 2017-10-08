@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Session, type: :model do
   subject { described_class.new username: 'username', password: 'password' }
 
+  it { should delegate_method(:to_json).to :decorate }
+
   it { should validate_presence_of :username }
 
   it { should validate_presence_of :password }

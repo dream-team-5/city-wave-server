@@ -9,6 +9,8 @@ RSpec.describe Profile do
 
   it { should delegate_method(:username).to(:user).with_prefix }
 
+  it { should delegate_method(:to_json).to :decorate }
+
   describe '#save' do
     context do
       before { expect(user).to receive(:save).and_return true }

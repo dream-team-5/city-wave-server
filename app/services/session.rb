@@ -1,9 +1,12 @@
 class Session
   include ActiveModel::Model
+  include Draper::Decoratable
 
   attr_accessor :username, :password
 
   attr_reader :auth_token
+
+  delegate :to_json, to: :decorate
 
   validates :username, :password, presence: true
 

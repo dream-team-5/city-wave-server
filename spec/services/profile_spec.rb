@@ -9,7 +9,7 @@ RSpec.describe Profile do
 
   it { should delegate_method(:username).to(:user).with_prefix }
 
-  it { should delegate_method(:to_json).to :decorate }
+  it { should delegate_method(:as_json).to :decorate }
 
   describe '#save' do
     context do

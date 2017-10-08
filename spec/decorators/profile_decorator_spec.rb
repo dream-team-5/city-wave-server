@@ -5,9 +5,7 @@ RSpec.describe ProfileDecorator do
 
   let(:profile) { Profile.new stub_model User, username: 'username'}
 
-  describe '#to_json' do
-    let(:json) { { 'id' => profile.user_id, 'username' => profile.user_username } }
-
-    it { expect(JSON.parse subject.to_json).to eq json }
+  describe '#as_json' do
+    its(:as_json) { should eq 'id' => profile.user_id, 'username' => profile.user_username }
   end
 end

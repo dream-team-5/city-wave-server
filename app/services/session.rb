@@ -6,7 +6,7 @@ class Session
 
   attr_reader :auth_token
 
-  delegate :to_json, to: :decorate
+  delegate :as_json, to: :decorate
 
   validates :username, :password, presence: true
 

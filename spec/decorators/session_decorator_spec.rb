@@ -8,6 +8,6 @@ RSpec.describe SessionDecorator do
   describe '#to_json' do
     before { expect(session).to receive(:auth_token).and_return 'auth_token' }
 
-    it { expect(JSON.parse subject.to_json).to eq 'auth_token' }
+    its(:as_json) { should eq 'auth_token' }
   end
 end

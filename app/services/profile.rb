@@ -1,11 +1,11 @@
 class Profile
   include Draper::Decoratable
-  
+
   attr_reader :password, :username, :errors
 
   delegate :id, :username, to: :user, prefix: true
 
-  delegate :to_json, to: :decorate
+  delegate :as_json, to: :decorate
 
   def initialize user
     @user = user

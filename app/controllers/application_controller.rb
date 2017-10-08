@@ -1,9 +1,7 @@
 class ApplicationController < ActionController::Base
-  include AuthenticatedController
-  include RESTController
-  include AuthorizedController
-
-  helper_method :error_description
+  rescue_from StandardError,
+              Object,
+              with: -> e { render_error e.to_s, 500 }
 
   rescue_from ActiveRecord::RecordInvalid,
               ActiveRecord::RecordNotSaved,
@@ -19,9 +17,11 @@ class ApplicationController < ActionController::Base
               AbstractController::ActionNotFound,
               with: -> e { render_error e.to_s, 404 }
 
-  rescue_from StandardError,
-              Object,
-              with: -> e { render_error e.to_s, 500 }
+  include AuthenticatedController
+  include RESTController
+  include AuthorizedController
+
+  helper_method :error_description
 
   private
   def render_error description, status

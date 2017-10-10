@@ -8,12 +8,8 @@ RSpec.describe ProfilePolicy do
   end
 
   permissions :show?, :update? do
-    context do
-      it { should permit stub_model(User, roles: :basic), nil }
-    end
+    it { should permit stub_model(User, roles: :basic), nil }
 
-    context do
-      it { should_not permit stub_model(User), nil }
-    end
+    it { should_not permit stub_model(User), nil }
   end
 end

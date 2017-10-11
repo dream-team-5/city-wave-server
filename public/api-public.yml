@@ -915,12 +915,6 @@ definitions:
       photo_url:
         type: string
         example: http://placehold.it/300x300.png
-      saved:
-        type: boolean
-        example: true
-      visited:
-        type: boolean
-        example: true
   Place:
     type: object
     properties:
@@ -947,9 +941,14 @@ definitions:
         type: string
         example: адреса місця
       location:
-        type: array
-        items:
-          type: integer
+        type: object
+        properties:
+          x:
+            type: integer
+            example: 1.0
+          y:
+            type: integer
+            example: 1.0
       contacts:
         type: string
         example: контакти
@@ -963,12 +962,6 @@ definitions:
         $ref: '#/definitions/OpenHours'
       duration:
         $ref: '#/definitions/Duration'
-      saved:
-        type: boolean
-        example: true
-      visited:
-        type: boolean
-        example: true
   Tag:
     type: object
     properties:

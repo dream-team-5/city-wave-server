@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resource :profile, only: [:show, :create, :update]
 
+  resources :saved_places, only: [:index, :create]
+
   resource :session, only: :create
 
   resources :tags, only: :index do

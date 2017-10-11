@@ -173,7 +173,7 @@ paths:
           in: query
           type: string
           required: false
-        - name: search
+        - name: name
           in: query
           type: string
           required: false
@@ -268,7 +268,7 @@ paths:
           in: query
           type: string
           required: false
-        - name: search
+        - name: name
           in: query
           type: string
           required: false
@@ -434,7 +434,7 @@ paths:
         - Cities
         - Places
         - Basic user
-      description: Get list of places in city optionaly filtered by search
+      description: Get list of places in city optionaly filtered by name
       parameters:
         - name: city_id
           in: path
@@ -448,7 +448,7 @@ paths:
           in: query
           type: string
           required: false
-        - name: search
+        - name: name
           in: query
           type: string
           required: false
@@ -680,7 +680,7 @@ paths:
         - Tags
         - Places
         - Basic user
-      description: Get list of places with tag optionaly filtered by search
+      description: Get list of places with tag optionaly filtered by name
       parameters:
         - name: tag_id
           in: path
@@ -694,7 +694,7 @@ paths:
           in: query
           type: string
           required: false
-        - name: search
+        - name: name
           in: query
           type: string
           required: false
@@ -773,7 +773,7 @@ paths:
         - Categories
         - Places
         - Basic user
-      description: Get list of places with category optionaly filtered by search
+      description: Get list of places with category optionaly filtered by name
       parameters:
         - name: category_id
           in: path
@@ -787,7 +787,7 @@ paths:
           in: query
           type: string
           required: false
-        - name: search
+        - name: name
           in: query
           type: string
           required: false

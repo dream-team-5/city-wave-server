@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Place, type: :model do
+  it { should delegate_method(:as_json).to :decorate }
+  
   it { should belong_to :city }
 
   it { should belong_to :category }

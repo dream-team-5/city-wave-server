@@ -1,6 +1,8 @@
 class Place < ApplicationRecord
   include PgSearch
 
+  delegate :as_json, to: :decorate
+
   belongs_to :city
 
   belongs_to :category

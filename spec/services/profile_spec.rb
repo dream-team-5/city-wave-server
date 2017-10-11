@@ -5,29 +5,13 @@ RSpec.describe Profile do
 
   subject { described_class.new user }
 
-  it { should delegate_method(:id).to(:user).with_prefix }
+  it { should delegate_method(:errors).to :user }
 
-  it { should delegate_method(:username).to(:user).with_prefix }
+  it { should delegate_method(:save).to :user }
+
+  it { should delegate_method(:decorate).to :user }
 
   it { should delegate_method(:as_json).to :decorate }
-
-  describe '#save' do
-    context do
-      before { expect(user).to receive(:save).and_return true }
-
-      its(:save) { should eq true }
-    end
-
-    context do
-      before { expect(user).to receive(:save).and_return false }
-
-      before { expect(user).to receive(:errors).and_return :errors }
-
-      its(:save) { should eq false }
-
-      after { expect(subject.errors).to eq :errors }
-    end
-  end
 
   describe '#update' do
     before { expect(subject).to receive(:parse_params).with :params }

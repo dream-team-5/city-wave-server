@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  delegate :basic?, :registered?, :admin?, to: :decorate
+  delegate :basic?, :registered?, :admin?, :as_json, to: :decorate
 
   has_and_belongs_to_many :visited_places, class_name: 'Place', join_table: :visited_places
 

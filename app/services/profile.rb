@@ -1,22 +1,12 @@
 class Profile
-  include Draper::Decoratable
+  attr_reader :password, :username
 
-  attr_reader :password, :username, :errors
-
-  delegate :id, :username, to: :user, prefix: true
+  delegate :save, :errors, :decorate, to: :user
 
   delegate :as_json, to: :decorate
 
   def initialize user
     @user = user
-  end
-
-  def save
-    valid = user.save
-
-    @errors = user.errors
-
-    valid
   end
 
   def update params
@@ -31,11 +21,11 @@ class Profile
     save
   end
 
-  private
   def user
     @user ||= User.new roles: :basic
   end
 
+  private
   def parse_params params
     @password = params[:password]
 

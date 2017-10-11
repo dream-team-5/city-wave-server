@@ -44,4 +44,10 @@ RSpec.describe UserDecorator do
       its(:admin?) { should eq false }
     end
   end
+
+  describe '#as_json' do
+    let(:user) { stub_model User, username: 'username', roles: [:admin, :registered, :basic] }
+
+    its(:as_json) { should eq 'id' => user.id, 'username' => user.username, 'roles' => user.roles }
+  end
 end

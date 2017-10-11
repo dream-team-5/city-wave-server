@@ -12,4 +12,8 @@ class UserDecorator < Draper::Decorator
   def admin?
     model.roles? :admin
   end
+
+  def as_json options={}
+    super options.reverse_merge only: [:id, :username, :roles]
+  end
 end

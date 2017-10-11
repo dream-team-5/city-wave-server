@@ -249,6 +249,10 @@ paths:
           description: Forbidden
           schema:
             $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Place not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         500:
           description: Unknown error
           schema:
@@ -342,6 +346,10 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         403:
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Place not found
           schema:
             $ref: '#/definitions/ErrorResponse'
         500:

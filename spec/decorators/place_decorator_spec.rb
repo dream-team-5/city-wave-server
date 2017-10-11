@@ -40,11 +40,27 @@ RSpec.describe PlaceDecorator do
   end
 
   describe '#open_hours' do
-    its(:open_hours) { should eq begin: place.open_hours.begin, end: place.open_hours.end }
+    context do
+      let(:place) { stub_model Place }
+
+      its(:open_hours) { should be_nil }
+    end
+
+    context do
+      its(:open_hours) { should eq begin: place.open_hours.begin, end: place.open_hours.end }
+    end
   end
 
   describe '#duration' do
-    its(:duration) { should eq begin: place.duration.begin, end: place.duration.end }
+    context do
+      let(:place) { stub_model Place }
+
+      its(:duration) { should be_nil }
+    end
+
+    context do
+      its(:duration) { should eq begin: place.duration.begin, end: place.duration.end }
+    end
   end
 
   describe '#photo_url' do

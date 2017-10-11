@@ -19,10 +19,10 @@ class PlaceDecorator < Draper::Decorator
   end
 
   def open_hours
-    { begin: super.begin, end: super.end }
+    { begin: super.begin, end: super.end } if super.present?
   end
 
   def duration
-    { begin: super.begin, end: super.end }
+    { begin: super.begin, end: super.end } if super.present?
   end
 end

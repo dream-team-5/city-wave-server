@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe SavedPlacesController, type: :controller do
   describe '#collection' do
+    before { expect(subject).to receive(:search_params).and_return :search_params }
+
     before do
-      expect(subject).to receive(:current_user) do
-        double.tap { |a| expect(a).to receive(:saved_places).and_return :collection }
+      expect(SavedPlaceSearcher).to receive(:search).with(:search_params) do
+        double.tap { |a| expect(a).to receive(:order).with(:name).and_return :collection }
       end
     end
 
@@ -19,6 +21,16 @@ RSpec.describe SavedPlacesController, type: :controller do
     before { expect(subject).to receive(:current_user).and_return :current_user }
 
     its(:resource_params) { should eq params.permit!.merge user: :current_user }
+  end
+
+  describe '#search_params' do
+    let(:params) { ActionController::Parameters.new page: 1, name: 'name' }
+
+    before { allow(subject).to receive(:params).and_return params }
+
+    before { expect(subject).to receive(:current_user).and_return :current_user }
+
+    its(:search_params) { should eq params.permit!.merge user: :current_user }
   end
 
   it_behaves_like :index

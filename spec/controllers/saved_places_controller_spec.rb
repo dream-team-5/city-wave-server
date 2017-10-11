@@ -11,6 +11,16 @@ RSpec.describe SavedPlacesController, type: :controller do
     its(:collection) { should eq :collection }
   end
 
+  describe '#resource_params' do
+    let(:params) { ActionController::Parameters.new place_id: 1 }
+
+    before { allow(subject).to receive(:params).and_return params }
+
+    before { expect(subject).to receive(:current_user).and_return :current_user }
+
+    its(:resource_params) { should eq params.permit!.merge user: :current_user }
+  end
+
   it_behaves_like :index
 
   it_behaves_like :create do

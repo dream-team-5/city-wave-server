@@ -236,7 +236,7 @@ paths:
                 type: boolean
                 default: true
               result:
-                $ref: '#/definitions/PlaceFull'
+                $ref: '#/definitions/Place'
         400:
           description: Bad request
           schema:
@@ -331,7 +331,7 @@ paths:
                 type: boolean
                 default: true
               result:
-                $ref: '#/definitions/PlaceFull'
+                $ref: '#/definitions/Place'
         400:
           description: Bad request
           schema:
@@ -512,7 +512,7 @@ paths:
               result:
                 type: array
                 items:
-                  $ref: '#/definitions/PlaceFull'
+                  $ref: '#/definitions/Place'
         401:
           description: Not authorized
           schema:
@@ -877,6 +877,11 @@ definitions:
       username:
         type: string
         example: username
+      roles:
+        type: array
+        items:
+          type: string
+          example: basic
   City:
     type: object
     properties:
@@ -901,17 +906,12 @@ definitions:
       id:
         type: integer
         example: 1
-      category:
-        $ref: '#/definitions/Category'
       name:
         type: string
-        example: Зоопарк "Подільський"
+        example: назва місця
       address:
         type: string
-        example: вул. Тарногродського, 9
-      price:
-        type: integer
-        example: 24.25
+        example: адреса місця
       photo_url:
         type: string
         example: http://placehold.it/300x300.png
@@ -921,39 +921,41 @@ definitions:
       visited:
         type: boolean
         example: true
-  PlaceFull:
+  Place:
     type: object
     properties:
       id:
         type: integer
         example: 1
-      city:
-        $ref: '#/definitions/City'
-      category:
-        $ref: '#/definitions/Category'
-      tags:
+      city_id:
+        type: integer
+        example: 1
+      category_id:
+        type: integer
+        example: 1
+      tag_ids:
         type: array
         items:
-          $ref: '#/definitions/Tag'
+          type: integer
       name:
         type: string
-        example: Зоопарк "Подільський"
+        example: назва місця
       description:
         type: string
-        example: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id placerat augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec at euismod massa. Fusce eu lacus justo. Ut varius sit amet nibh vel vehicula. Sed ullamcorper, purus id fermentum luctus, nisi leo molestie magna, consequat hendrerit risus nulla vitae nisl. Maecenas sem erat, scelerisque vitae arcu sed, pellentesque interdum leo.
+        example: опис місця
       address:
         type: string
-        example: вул. Тарногродського, 9
+        example: адреса місця
       location:
         type: array
         items:
           type: integer
       contacts:
         type: string
-        example: 'Телефон: 0432 619 255'
+        example: контакти
       price:
         type: integer
-        example: 24.25
+        example: 42.25
       photo_url:
         type: string
         example: http://placehold.it/300x300.png
@@ -988,10 +990,12 @@ definitions:
       date:
         type: string
         example: '2017-10-05T17:31:55.338+03:00'
-      user:
-        $ref: '#/definitions/User'
-      place:
-        $ref: '#/definitions/PlaceShort'
+      user_id:
+        type: integer
+        example: 1
+      place_id:
+        type: integer
+        example: 1
   Wish:
     type: object
     properties:

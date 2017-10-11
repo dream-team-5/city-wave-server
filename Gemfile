@@ -5,7 +5,6 @@ gem 'puma'
 gem 'draper'
 gem 'bcrypt'
 gem 'bitmask_attributes'
-gem 'dotenv-rails'
 gem 'pundit'
 gem 'pg'
 gem 'pg_search'
@@ -16,6 +15,7 @@ gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
 
 group :development do

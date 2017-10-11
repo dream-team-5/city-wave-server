@@ -19,5 +19,7 @@ Rails.application.routes.draw do
     resources :places, only: :index
   end
 
+  resources :visited_places, only: [:index, :create]
+
   resources :wishes, only: :index
 end

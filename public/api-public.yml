@@ -360,14 +360,18 @@ paths:
     get:
       tags:
         - Comments
-        - Registered user
-      description: Get list of comments from user
+        - Basic user
+      description: Get list of comments
       parameters:
         - name: token
           in: query
           type: string
           required: true
         - name: page
+          in: query
+          type: string
+          required: false
+        - name: user_id
           in: query
           type: string
           required: false
@@ -542,7 +546,7 @@ paths:
       tags:
         - Places
         - Comments
-        - Registered user
+        - Basic user
       description: Get list of comments in place
       parameters:
         - name: place_id
@@ -554,6 +558,10 @@ paths:
           type: string
           required: true
         - name: page
+          in: query
+          type: string
+          required: false
+        - name: user_id
           in: query
           type: string
           required: false

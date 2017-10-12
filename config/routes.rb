@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     resources :places, only: :index
   end
 
-  resources :places, only: :show
+  resources :comments, only: :index
+
+  resources :places, only: :show do
+    resources :comments, only: [:index, :create]
+  end
 
   resource :profile, only: [:show, :create, :update]
 

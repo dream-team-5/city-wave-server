@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  delegate :as_json, to: :decorate
+
   belongs_to :user
 
   belongs_to :place

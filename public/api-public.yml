@@ -2,10 +2,10 @@ swagger: '2.0'
 info:
   version: 1.0.0
   title: City Wave API
-host: city-wave.herokuapp.com
+host: localhost:3000
 basePath: /
 schemes:
-  - https
+  - http
 consumes:
   - application/json
 produces:
@@ -996,7 +996,7 @@ definitions:
       text:
         type: string
         example: коментар
-      date:
+      created_at:
         type: string
         example: '2017-10-05T17:31:55.338+03:00'
       user_id:

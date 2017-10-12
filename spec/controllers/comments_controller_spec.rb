@@ -6,7 +6,7 @@ RSpec.describe CommentsController, type: :controller do
 
     before do
       expect(CommentSearcher).to receive(:search).with(:search_params) do
-        double.tap { |a| expect(a).to receive(:order).with(:name).and_return :collection }
+        double.tap { |a| expect(a).to receive(:order).with(:id).and_return :collection }
       end
     end
 

@@ -9,6 +9,6 @@ class CommentsController < ApplicationController
   end
 
   def collection
-    @collection ||= CommentSearcher.search(search_params).order :name
+    @collection ||= CommentSearcher.search(search_params).order :id
   end
 end

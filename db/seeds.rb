@@ -1,7 +1,96 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+module Helper
+  HOURS = [Time.parse('00:00:00'), Time.parse('23:59:00')]
+
+  DATES = [Date.parse('01.01.2017'), Date.parse('31.12.2017')]
+
+  class << self
+    def open_hours
+      hours = [Faker::Time.between(HOURS[0], HOURS[1]), Faker::Time.between(HOURS[0], HOURS[1])]
+
+      hours.min..hours.max
+    end
+
+    def duration
+      dates = [Faker::Date.between(DATES[0], DATES[1]), Faker::Date.between(DATES[0], DATES[1])]
+
+      dates.min..dates.max
+    end
+
+    def random_record type, limit=1
+      result = type.offset(rand(type.count))
+
+      if limit == 1
+        result.first
+      else
+        result.limit limit
+      end
+    end
+  end
+end
+
+20.times.map do
+  Category.create! name: Faker::Commerce.unique.department(2)
+end unless Category.first
+
+20.times.map do
+  City.create! name: Faker::Address.unique.city
+end unless City.first
+
+unless User.first
+  16.times.map do
+    User.create! roles: :basic
+  end
+
+  8.times.map do
+    User.create! \
+      roles: [:basic, :registered],
+      username: Faker::HarryPotter.unique.character,
+      password: 'password'
+  end
+end
+
+filename = 'tmp/image.jpeg'
+
+100.times.map do
+  File.open(filename, 'wb+') do |file|
+    file.write open(Faker::LoremPixel.image('500x500')).read
+  end
+
+  place = Place.create! \
+    city: Helper.random_record(City),
+    category: Helper.random_record(Category),
+    name: Faker::HarryPotter.location,
+    description: Faker::Lorem.paragraph,
+    address: Faker::Address.street_address,
+    location: [Faker::Address.latitude, Faker::Address.longitude],
+    contacts: Faker::PhoneNumber.cell_phone,
+    price: Faker::Commerce.price,
+    open_hours: Helper.open_hours,
+    duration: Helper.duration,
+    photo: File.open(filename)
+
+  File.unlink filename
+
+  rand(20).times do
+    Comment.create! \
+      place: place,
+      user: Helper.random_record(User.with_roles :registered),
+      text: Faker::HarryPotter.quote.truncate(140, separator: ' ')
+  end
+end unless Place.first
+
+10.times.map do
+  Tag.create! \
+    name: Faker::Commerce.color,
+    places: Helper.random_record(Place, rand(25))
+end unless Tag.first
+
+User.all.map do |user|
+  user.saved_places.push Helper.random_record(Place, rand(10))
+
+  user.visited_places.push Helper.random_record(Place, rand(10))
+end
+
+20.times do
+  Wish.create! text: Faker::RickAndMorty.quote
+end unless Wish.first

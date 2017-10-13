@@ -12,6 +12,7 @@ gem 'kaminari'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3.0'
 gem 'rack-cors', require: 'rack/cors'
+gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -20,7 +21,6 @@ end
 
 group :development do
   gem 'listen'
-  gem 'faker'
 end
 
 group :test do

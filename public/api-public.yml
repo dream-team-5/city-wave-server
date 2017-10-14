@@ -997,9 +997,9 @@ definitions:
       created_at:
         type: string
         example: '2017-10-05T17:31:55.338+03:00'
-      user_id:
-        type: integer
-        example: 1
+      username:
+        type: string
+        example: 'user name'
       place_id:
         type: integer
         example: 1

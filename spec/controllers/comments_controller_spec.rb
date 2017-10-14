@@ -24,11 +24,13 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe '#search_params' do
-    let(:params) { ActionController::Parameters.new page: 1, place_id: 2, user_id: 3 }
+    let(:params) { ActionController::Parameters.new page: 1, place_id: 2 }
 
     before { allow(subject).to receive(:params).and_return params }
 
-    its(:search_params) { should eq params.permit! }
+    before { expect(subject).to receive(:current_user).and_return :current_user }
+
+    its(:search_params) { should eq params.permit!.merge user: :current_user }
   end
 
   it_behaves_like :index

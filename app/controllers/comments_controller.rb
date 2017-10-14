@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   private
   def search_params
-    params.permit :place_id, :user_id, :page
+    params.permit(:place_id, :page).merge user: current_user
   end
 
   def resource_params

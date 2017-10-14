@@ -2,10 +2,10 @@ swagger: '2.0'
 info:
   version: 1.0.0
   title: City Wave API
-host: localhost:3000
+host: city-wave.herokuapp.com
 basePath: /
 schemes:
-  - http
+  - https
 consumes:
   - application/json
 produces:
@@ -522,9 +522,7 @@ paths:
                 type: boolean
                 default: true
               result:
-                type: array
-                items:
-                  $ref: '#/definitions/Place'
+                $ref: '#/definitions/Place'
         401:
           description: Not authorized
           schema:

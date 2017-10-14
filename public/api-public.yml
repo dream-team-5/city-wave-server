@@ -838,10 +838,10 @@ paths:
           description: Unknown error
           schema:
             $ref: '#/definitions/ErrorResponse'
-  /wishes:
+  /wish:
     get:
       tags:
-        - Wishes
+        - Wish
         - Basic user
       description: Get a random wish
       parameters:

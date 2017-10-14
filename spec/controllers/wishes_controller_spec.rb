@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WishesController, type: :controller do
-  describe '#collection' do
+  describe '#resource' do
     before { expect(described_model).to receive(:count).and_return 10 }
 
     before { expect(subject).to receive(:rand).with(10).and_return 2 }
@@ -12,8 +12,8 @@ RSpec.describe WishesController, type: :controller do
       end
     end
 
-    its(:collection) { should eq :wish }
+    its(:resource) { should eq :wish }
   end
 
-  it_behaves_like :index
+  it_behaves_like :show
 end

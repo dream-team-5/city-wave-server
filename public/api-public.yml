@@ -371,10 +371,6 @@ paths:
           in: query
           type: string
           required: false
-        - name: user_id
-          in: query
-          type: string
-          required: false
       responses:
         200:
           description: Success
@@ -556,10 +552,6 @@ paths:
           type: string
           required: true
         - name: page
-          in: query
-          type: string
-          required: false
-        - name: user_id
           in: query
           type: string
           required: false

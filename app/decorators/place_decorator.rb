@@ -15,7 +15,7 @@ class PlaceDecorator < Draper::Decorator
   end
 
   def photo_url
-    ENV['HOSTNAME'] + photo.url
+    photo.url
   end
 
   def open_hours

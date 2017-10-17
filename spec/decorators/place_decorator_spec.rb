@@ -70,6 +70,6 @@ RSpec.describe PlaceDecorator do
       end
     end
 
-    its(:photo_url) { should eq 'http://localhost:3000/photo_url' }
+    its(:photo_url) { should eq '/photo_url' }
   end
 end

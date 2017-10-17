@@ -10,7 +10,7 @@ gem 'pg'
 gem 'pg_search'
 gem 'kaminari'
 gem 'paperclip'
-gem 'aws-sdk', '~> 2.3.0'
+gem 'paperclip-dropbox', git: 'https://github.com/dream-team-5/paperclip-dropbox', branch: 'dropbox_api'
 gem 'rack-cors', require: 'rack/cors'
 gem 'faker'
 

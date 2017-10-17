@@ -3,6 +3,7 @@ if Rails.env.production?
     storage: :dropbox,
     dropbox_credentials: {
       access_token: ENV['DROPBOX_ACCESS_TOKEN'],
-      access_type: 'app_folder'
+      access_type: 'app_folder',
+      unique_filename: true
     }
 end

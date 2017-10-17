@@ -15,7 +15,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'faker'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.6.1'
   gem 'dotenv-rails'
 end
 

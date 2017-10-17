@@ -53,7 +53,7 @@ filename = 'tmp/image.jpeg'
 
 100.times.map do
   File.open(filename, 'wb+') do |file|
-    file.write open(Faker::LoremPixel.image('500x500')).read
+    file.write open(Faker::LoremPixel.image('800x300')).read
   end
 
   place = Place.create! \

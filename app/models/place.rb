@@ -9,7 +9,7 @@ class Place < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
-  has_attached_file :photo
+  has_attached_file :photo, styles: { mobile: 'x300' }
 
   has_and_belongs_to_many :tags
 

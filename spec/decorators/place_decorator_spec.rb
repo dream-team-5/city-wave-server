@@ -66,7 +66,7 @@ RSpec.describe PlaceDecorator do
   describe '#photo_url' do
     before do
       expect(place).to receive(:photo) do
-        double.tap { |a| expect(a).to receive(:url).and_return '/photo_url' }
+        double.tap { |a| expect(a).to receive(:url).with(:mobile).and_return '/photo_url' }
       end
     end
 

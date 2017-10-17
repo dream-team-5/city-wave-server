@@ -15,7 +15,7 @@ class PlaceDecorator < Draper::Decorator
   end
 
   def photo_url
-    photo.url
+    photo.url :mobile
   end
 
   def open_hours

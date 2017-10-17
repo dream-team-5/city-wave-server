@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dream-team-5/paperclip-dropbox
-  revision: 66e6928d2d29708be948ab41053c656c8aef1ddb
+  revision: 9a4ec30d1d78efa1058b327e1dac20d66e48f718
   branch: dropbox_api
   specs:
     paperclip-dropbox (1.3.2)

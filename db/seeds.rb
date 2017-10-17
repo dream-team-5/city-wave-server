@@ -44,7 +44,7 @@ unless User.first
   8.times.map do
     User.create! \
       roles: [:basic, :registered],
-      username: Faker::HarryPotter.unique.character,
+      username: Faker::HarryPotter.unique.character.truncate(20),
       password: 'password'
   end
 end

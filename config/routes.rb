@@ -31,5 +31,7 @@ Rails.application.routes.draw do
     root action: :show, controller: :sessions
 
     resource :session, only: [:new, :create, :show]
+
+    resources :categories
   end
 end

@@ -71,9 +71,9 @@ module RESTController
 
   def create_success_callback
     respond_to do |format|
-      format.json { render }
+      format.any(:json, :js) { render }
 
-      format.any(:js, :html) { redirect_to action: :index }
+      format.html { redirect_to action: :index }
     end
   end
 

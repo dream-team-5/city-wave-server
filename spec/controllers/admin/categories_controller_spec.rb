@@ -26,7 +26,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
   it_behaves_like :create, format: :js do
     let(:resource) { stub_model Category }
 
-    let(:success) { -> { should redirect_to action: :index } }
+    let(:success) { -> { should render_template :create } }
 
     let(:failure) { -> { should render_template :new } }
   end

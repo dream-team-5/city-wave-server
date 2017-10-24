@@ -30,7 +30,9 @@ class Session
   end
 
   def validate_username
-    errors.add :username, I18n.t('errors.messages.invalid') if user.blank?
+    if username.present?
+      errors.add :username, I18n.t('errors.messages.invalid') if user.blank?
+    end
   end
 
   def validate_password

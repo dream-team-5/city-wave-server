@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.json { render :error, status: status, layout: false }
 
-      format.all { render :error, status: status }
+      format.any(:js, :html) { render :error, status: status }
     end
   end
 

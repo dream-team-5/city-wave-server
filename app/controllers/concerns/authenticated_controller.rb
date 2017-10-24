@@ -31,9 +31,9 @@ module AuthenticatedController
   def authenticate
     unless current_user
       respond_to do |format|
-        format.any(:js, :html) { redirect_to [:new, :admin, :session] }
+        format.json { render_error 'Auth token is not valid', 401 }
 
-        format.all { render_error 'Auth token is not valid', 401 }
+        format.any(:js, :html) { redirect_to [:new, :admin, :session] }
       end
     end
   end

@@ -2,7 +2,7 @@ module RESTController
   extend ActiveSupport::Concern
 
   included do
-    helper_method :collection, :resource
+    helper_method :collection, :resource, :resource_model
 
     before_action :build_resource, only: :create
 
@@ -42,7 +42,7 @@ module RESTController
   end
 
   def collection
-    @collection ||= resource_model.all
+    @collection ||= resource_model.all.order('id DESC').page params[:page]
   end
 
   def resource
@@ -71,41 +71,41 @@ module RESTController
 
   def create_success_callback
     respond_to do |format|
-      format.html { redirect_to resource }
+      format.json { render }
 
-      format.all { render }
+      format.any(:js, :html) { redirect_to action: :index }
     end
   end
 
   def create_failure_callback
     respond_to do |format|
-      format.any(:js, :html) { render :new }
+      format.json { render_error resource.errors, 400 }
 
-      format.all { render_error resource.errors, 400 }
+      format.any(:js, :html) { render :new }
     end
   end
 
   def update_success_callback
     respond_to do |format|
-      format.html { redirect_to resource }
+      format.any(:json, :js) { render }
 
-      format.all { render }
+      format.html { redirect_to action: :index }
     end
   end
 
   def update_failure_callback
     respond_to do |format|
-      format.any(:js, :html) { render :edit }
+      format.json { render_error resource.errors, 400 }
 
-      format.all { render_error resource.errors, 400 }
+      format.any(:js, :html) { render :edit }
     end
   end
 
   def destroy_success_callback
     respond_to do |format|
-      format.html { redirect_to action: :index }
+      format.any(:json, :js) { render }
 
-      format.all { render }
+      format.html { redirect_to action: :index }
     end
   end
 

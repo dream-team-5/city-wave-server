@@ -18,7 +18,7 @@ RSpec.describe ProfilesController, type: :controller do
   it_behaves_like :show
 
   it_behaves_like :create, skip_authenticate: true do
-    let(:resource) { double }
+    let(:resource) { stub_model Profile }
 
     let(:success) { -> { should render_template :create } }
 
@@ -26,7 +26,7 @@ RSpec.describe ProfilesController, type: :controller do
   end
 
   it_behaves_like :update do
-    let(:resource) { double }
+    let(:resource) { stub_model Profile }
 
     let(:success) { -> { should render_template :update } }
 

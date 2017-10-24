@@ -4,7 +4,7 @@ class Session
 
   attr_accessor :username, :password
 
-  attr_reader :auth_token
+  attr_reader :auth_token, :id
 
   delegate :as_json, to: :decorate
 
@@ -12,7 +12,7 @@ class Session
 
   validate :validate_username, :validate_password
 
-  def initialize params
+  def initialize params={}
     @username = params[:username]
 
     @password = params[:password]

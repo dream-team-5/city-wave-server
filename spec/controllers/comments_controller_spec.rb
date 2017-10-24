@@ -38,7 +38,7 @@ RSpec.describe CommentsController, type: :controller do
   it_behaves_like :index, params: { id: 1, place_id: 2 }
 
   it_behaves_like :create, params: { place_id: 2 } do
-    let(:resource) { double }
+    let(:resource) { stub_model Comment }
 
     let(:success) { -> { should render_template :create } }
 

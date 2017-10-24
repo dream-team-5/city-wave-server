@@ -1,11 +1,11 @@
 class Profile
-  attr_reader :password, :username
+  attr_reader :password, :username, :id
 
   delegate :save, :errors, :decorate, to: :user
 
   delegate :as_json, to: :decorate
 
-  def initialize user
+  def initialize user=nil
     @user = user
   end
 

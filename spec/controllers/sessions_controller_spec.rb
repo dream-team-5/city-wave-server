@@ -12,7 +12,7 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   it_behaves_like :create, skip_authenticate: true do
-    let(:resource) { double }
+    let(:resource) { stub_model Session }
 
     let(:success) { -> { should render_template :create } }
 

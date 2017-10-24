@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
   def render_error description, status
     @error_description = description
 
-    render :error, status: status, layout: false
+    respond_to do |format|
+      format.json { render :error, status: status, layout: false }
+
+      format.all { render :error, status: status }
+    end
   end
 
   attr_reader :error_description

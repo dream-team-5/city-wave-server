@@ -127,8 +127,6 @@ end
 RSpec.shared_examples :destroy do |params|
   let(:default_params) { { skip_authenticate: false, format: :json, params: { id: 1 } } }
 
-  let(:resource) { double }
-
   include_examples :parse_params, params
 
   include_examples :authenticate_user
@@ -138,11 +136,21 @@ RSpec.shared_examples :destroy do |params|
   include_examples :has_policy
 
   describe '#destroy' do
-    before { expect(resource).to receive(:destroy) }
+    context do
+      before { expect(resource).to receive(:destroy).and_return(true) }
 
-    before { delete :destroy, params: request_params, format: request_format }
+      before { delete :destroy, params: request_params, format: request_format }
 
-    it { success.call }
+      it { success.call }
+    end
+
+    context do
+      before { expect(resource).to receive(:destroy).and_return(false) }
+
+      before { delete :destroy, params: request_params, format: request_format }
+
+      it { failure.call }
+    end
   end
 end
 

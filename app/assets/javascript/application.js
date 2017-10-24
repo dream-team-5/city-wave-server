@@ -5,6 +5,7 @@
 //= require tether
 //= require bootstrap
 //= require bootstrap-multiselect
+//= require jquery.form
 
 // = require_tree .
 // = require_self

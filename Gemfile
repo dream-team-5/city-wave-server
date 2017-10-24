@@ -13,6 +13,12 @@ gem 'paperclip'
 gem 'paperclip-dropbox', git: 'https://github.com/dream-team-5/paperclip-dropbox', branch: 'dropbox_api'
 gem 'rack-cors', require: 'rack/cors'
 gem 'faker'
+gem 'simple_form'
+gem 'bootstrap'
+gem 'bootstrap-multiselect-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-form-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.1'

@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require popper
+//= require tether
 //= require bootstrap
 //= require bootstrap-multiselect
 

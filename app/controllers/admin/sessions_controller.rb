@@ -6,7 +6,9 @@ class Admin::SessionsController < ApplicationController
   after_action :login_user, only: :create
 
   private
-  alias_method :resource, :resource_model
+  def resource
+    @resource ||= resource_model
+  end
 
   def resource_params
     params.require(:admin_session).permit :username, :password

@@ -70,23 +70,43 @@ module RESTController
   end
 
   def create_success_callback
-    render
+    respond_to do |format|
+      format.html { redirect_to resource }
+
+      format.all { render }
+    end
   end
 
   def create_failure_callback
-    render_error resource.errors, 400
+    respond_to do |format|
+      format.any(:js, :html) { render :new }
+
+      format.all { render_error resource.errors, 400 }
+    end
   end
 
   def update_success_callback
-    render
+    respond_to do |format|
+      format.html { redirect_to resource }
+
+      format.all { render }
+    end
   end
 
   def update_failure_callback
-    render_error resource.errors, 400
+    respond_to do |format|
+      format.any(:js, :html) { render :edit }
+
+      format.all { render_error resource.errors, 400 }
+    end
   end
 
   def destroy_success_callback
-    render
+    respond_to do |format|
+      format.html { redirect_to action: :index }
+
+      format.all { render }
+    end
   end
 
   def destroy_failure_callback

@@ -1,4 +1,6 @@
 class VisitedPlacesController < ApplicationController
+  responds_to :json
+
   private
   def collection
     @collection ||= VisitedPlaceSearcher.search(search_params).order :name

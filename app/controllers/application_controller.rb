@@ -37,4 +37,13 @@ class ApplicationController < ActionController::Base
   attr_reader :error_description
 
   private :error_description
+
+  class << self
+    private
+    def responds_to *formats
+      options = formats.extract_options!
+
+      before_action -> { respond_to(*formats) }, options
+    end
+  end
 end

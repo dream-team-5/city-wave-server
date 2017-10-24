@@ -1,1 +1,3 @@
-class CategoriesController < ApplicationController; end
+class CategoriesController < ApplicationController
+  responds_to :json
+end

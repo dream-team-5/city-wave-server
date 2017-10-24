@@ -1,1 +1,3 @@
-class CitiesController < ApplicationController; end
+class CitiesController < ApplicationController
+  responds_to :json
+end

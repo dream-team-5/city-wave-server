@@ -1,1 +1,3 @@
-class TagsController < ApplicationController; end
+class TagsController < ApplicationController
+  responds_to :json
+end

@@ -1,4 +1,6 @@
 class SavedPlacesController < ApplicationController
+  responds_to :json
+
   private
   def collection
     @collection ||= SavedPlaceSearcher.search(search_params).order :name

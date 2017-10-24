@@ -20,7 +20,7 @@ RSpec.describe Admin::SessionsController, type: :controller do
   it_behaves_like :create, skip_authenticate: true, format: :html do
     let(:resource) { stub_model Admin::Session }
 
-    let(:success) { -> { should redirect_to resource } }
+    let(:success) { -> { should redirect_to action: :show } }
 
     let(:failure) { -> { should render_template :new } }
   end

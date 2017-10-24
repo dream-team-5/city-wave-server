@@ -1,0 +1,7 @@
+.form-control-danger {
+  @extend .is-invalid;
+}
+
+.form-control-feedback {
+  @extend .invalid-feedback;
+}

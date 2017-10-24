@@ -1,0 +1,9 @@
+<div class="col-4 offset-4 my-auto">
+  <%= bootstrap_form_for(resource, url: [:admin, :session]) do |f| %>
+    <%= f.text_field :username %>
+
+    <%= f.password_field :password %>
+
+    <%= f.submit "Log In", class: 'btn btn-primary btn-block' %>
+  <% end %>
+</div>

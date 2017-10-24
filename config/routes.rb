@@ -26,4 +26,10 @@ Rails.application.routes.draw do
   resources :visited_places, only: [:index, :create]
 
   resource :wish, only: :show
+
+  namespace :admin do
+    root action: :show, controller: :sessions
+
+    resource :session, only: [:new, :create, :show]
+  end
 end

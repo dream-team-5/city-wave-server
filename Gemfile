@@ -20,6 +20,7 @@ gem 'tether-rails'
 gem 'bootstrap'
 gem 'bootstrap_form', git: 'https://github.com/bootstrap-ruby/rails-bootstrap-forms.git', branch: 'bootstrap-v4'
 gem 'bootstrap-multiselect-rails'
+gem 'bootstrap4-kaminari-views'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.1'

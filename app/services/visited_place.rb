@@ -3,11 +3,11 @@ class VisitedPlace
 
   delegate :as_json, to: :place
 
-  attr_accessor :place_id
+  attr_accessor :place_id, :id
 
   validates :place_id, presence: true
 
-  def initialize params
+  def initialize params={}
     @user = params[:user]
 
     @place_id = params[:place_id]

@@ -36,7 +36,7 @@ RSpec.describe SavedPlacesController, type: :controller do
   it_behaves_like :index
 
   it_behaves_like :create do
-    let(:resource) { double }
+    let(:resource) { stub_model SavedPlace }
 
     let(:success) { -> { should render_template :create } }
 

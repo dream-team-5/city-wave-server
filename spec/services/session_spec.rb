@@ -50,7 +50,7 @@ RSpec.describe Session, type: :model do
   end
 
   describe '#validate_username' do
-    before { expect(subject).to receive(:user).and_return user }
+    before { allow(subject).to receive(:user).and_return user }
 
     context do
       let(:user) { nil }
@@ -64,6 +64,14 @@ RSpec.describe Session, type: :model do
 
     context do
       let(:user) { double }
+
+      it { expect { subject.send :validate_username }.to_not change { subject.errors[:username] } }
+    end
+
+    context do
+      let(:user) { nil }
+
+      subject { described_class.new username: nil }
 
       it { expect { subject.send :validate_username }.to_not change { subject.errors[:username] } }
     end

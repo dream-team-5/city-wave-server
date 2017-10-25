@@ -11,7 +11,7 @@ RSpec.describe CategoryPolicy do
     it { should permit stub_model(User, roles: :basic), nil }
   end
 
-  permissions :show?, :new?, :create?, :edit?, :update? do
+  permissions :show?, :new?, :create?, :edit?, :update?, :destroy? do
     it { should_not permit nil, nil }
 
     it { should_not permit stub_model(User), double }

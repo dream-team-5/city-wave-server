@@ -15,8 +15,6 @@ RSpec.describe Admin::SessionsController, type: :controller do
 
   it_behaves_like :show, format: :html
 
-  it_behaves_like :show, format: :js
-
   it_behaves_like :create, skip_authenticate: true, format: :html do
     let(:resource) { stub_model Admin::Session }
 

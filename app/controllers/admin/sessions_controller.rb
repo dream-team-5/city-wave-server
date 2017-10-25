@@ -1,5 +1,5 @@
 class Admin::SessionsController < ApplicationController
-  responds_to :html, :js
+  responds_to :html
 
   skip_before_action :authenticate, only: [:new, :create]
 
@@ -15,11 +15,7 @@ class Admin::SessionsController < ApplicationController
   end
 
   def create_success_callback
-    respond_to do |format|
-      format.html { redirect_to action: :show }
-
-      format.all { render }
-    end
+    redirect_to action: :show
   end
 
   def login_user

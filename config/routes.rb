@@ -33,5 +33,7 @@ Rails.application.routes.draw do
     resource :session, only: [:new, :create, :show]
 
     resources :categories
+
+    resources :users
   end
 end

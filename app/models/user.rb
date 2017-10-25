@@ -28,4 +28,6 @@ class User < ApplicationRecord
       length: { in: 2..20 },
       uniqueness: { case_sensitive: false }
   end
+
+  paginates_per 8
 end

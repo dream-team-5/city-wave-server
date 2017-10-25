@@ -1,0 +1,15 @@
+<p class="lead">Id:</p>
+
+<p><%= resource.id %></p>
+
+<p class="lead">Username:</p>
+
+<p><%= resource.username %></p>
+
+<p class="lead">Roles:</p>
+
+<ul>
+  <% resource.roles.each do |role| %>
+    <li><%= role %></li>
+  <% end %>
+</ul>

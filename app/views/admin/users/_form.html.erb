@@ -1,0 +1,9 @@
+<%= bootstrap_form_for(resource, url: [:admin, resource]) do |f| %>
+  <%= f.text_field :username %>
+
+  <%= f.text_field :password %>
+
+  <%= f.select :roles, [:admin, :basic, :registered], {}, { multiple: true } %>
+
+  <%= f.submit class: 'btn btn-primary btn-block' %>
+<% end %>

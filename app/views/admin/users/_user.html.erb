@@ -1,0 +1,11 @@
+<tr id="<%= dom_id user %>">
+  <td><%= user.username %></td>
+
+  <td><%= user.roles.to_sentence %></td>
+
+  <td><%= link_to 'View', [:admin, user], remote: true, class: 'btn btn-outline-info btn-sm' %></td>
+
+  <td><%= link_to 'Edit', [:edit, :admin, user], remote: true, class: 'btn btn-outline-secondary btn-sm' %></td>
+
+  <td><%= link_to 'Delete', [:admin, user], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %></td>
+</tr>

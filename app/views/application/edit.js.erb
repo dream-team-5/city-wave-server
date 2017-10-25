@@ -2,6 +2,8 @@ $('.modal .modal-body').html('<%= j render 'form' %>');
 
 $('.modal .modal-body select').select2();
 
+$('.modal').on('focus', function() { autosize($('.modal .modal-body textarea')); });
+
 $('.modal .modal-body form').ajaxForm({ dataType: 'script' });
 
 $('.modal').modal();

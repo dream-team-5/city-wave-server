@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
     resources :categories
 
+    resources :cities
+
     resources :users
   end
 end

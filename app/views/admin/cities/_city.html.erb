@@ -1,0 +1,9 @@
+<tr id="<%= dom_id city %>">
+  <td><%= city.name %></td>
+
+  <td><%= link_to 'View', [:admin, city], remote: true, class: 'btn btn-outline-info btn-sm' %></td>
+
+  <td><%= link_to 'Edit', [:edit, :admin, city], remote: true, class: 'btn btn-outline-secondary btn-sm' %></td>
+
+  <td><%= link_to 'Delete', [:admin, city], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %></td>
+</tr>

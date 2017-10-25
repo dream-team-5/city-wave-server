@@ -1,13 +1,13 @@
-<div class="col-12 mb-4">
-  <h2 class="d-inline-block float-left"><%= resource_model.name.pluralize %></h2>
-
-  <%= link_to 'Add new', [:new, :admin, resource_model.name.downcase], class: 'btn btn-primary d-inline-block float-right', remote: true %>
-</div>
-
 <div class="col-10 offset-1 my-auto">
-  <table class="table table-hover">
+  <div class="mb-4 clearfix">
+    <h2 class="d-inline-block float-left"><%= resource_model.name.pluralize %></h2>
+
+    <%= link_to 'Add new', [:new, :admin, resource_model.name.downcase], class: 'btn btn-primary d-inline-block float-right', remote: true %>
+  </div>
+
+  <div class="list-group">
     <%= render collection %>
-  </table>
+  </div>
 
   <%= paginate collection, theme: 'twitter-bootstrap-4' %>
 </div>

@@ -1,11 +1,12 @@
-<tr id="<%= dom_id user %>">
-  <td><%= user.username %></td>
+<div id="<%= dom_id user %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+  <%= user.username.present? ? user.username : user.id %>
 
-  <td><%= user.roles.to_sentence %></td>
+  <span>
+    <%= link_to 'View', [:admin, user], remote: true, class: 'btn btn-outline-info btn-sm' %>
 
-  <td><%= link_to 'View', [:admin, user], remote: true, class: 'btn btn-outline-info btn-sm' %></td>
+    <%= link_to 'Edit', [:edit, :admin, user], remote: true, class: 'btn btn-outline-secondary btn-sm' %>
 
-  <td><%= link_to 'Edit', [:edit, :admin, user], remote: true, class: 'btn btn-outline-secondary btn-sm' %></td>
+    <%= link_to 'Delete', [:admin, user], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+  </span>
+</div>
 
-  <td><%= link_to 'Delete', [:admin, user], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %></td>
-</tr>

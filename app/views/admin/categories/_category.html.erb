@@ -1,9 +1,11 @@
-<tr id="<%= dom_id category %>">
-  <td><%= category.name %></td>
+<div id="<%= dom_id category %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+  <%= category.name %>
 
-  <td><%= link_to 'View', [:admin, category], remote: true, class: 'btn btn-outline-info btn-sm' %></td>
+  <span>
+    <%= link_to 'View', [:admin, category], remote: true, class: 'btn btn-outline-info btn-sm' %>
 
-  <td><%= link_to 'Edit', [:edit, :admin, category], remote: true, class: 'btn btn-outline-secondary btn-sm' %></td>
+    <%= link_to 'Edit', [:edit, :admin, category], remote: true, class: 'btn btn-outline-secondary btn-sm' %>
 
-  <td><%= link_to 'Delete', [:admin, category], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %></td>
-</tr>
+    <%= link_to 'Delete', [:admin, category], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+  </span>
+</div>

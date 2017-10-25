@@ -1,9 +1,11 @@
-<tr id="<%= dom_id city %>">
-  <td><%= city.name %></td>
+<div id="<%= dom_id city %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+  <%= city.name %>
 
-  <td><%= link_to 'View', [:admin, city], remote: true, class: 'btn btn-outline-info btn-sm' %></td>
+  <span>
+    <%= link_to 'View', [:admin, city], remote: true, class: 'btn btn-outline-info btn-sm' %>
 
-  <td><%= link_to 'Edit', [:edit, :admin, city], remote: true, class: 'btn btn-outline-secondary btn-sm' %></td>
+    <%= link_to 'Edit', [:edit, :admin, city], remote: true, class: 'btn btn-outline-secondary btn-sm' %>
 
-  <td><%= link_to 'Delete', [:admin, city], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %></td>
-</tr>
+    <%= link_to 'Delete', [:admin, city], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+  </span>
+</div>

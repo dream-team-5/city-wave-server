@@ -1,0 +1,5 @@
+<%= bootstrap_form_for(resource, url: [:admin, resource]) do |f| %>
+  <%= f.text_field :name %>
+
+  <%= f.submit class: 'btn btn-primary btn-block' %>
+<% end %>

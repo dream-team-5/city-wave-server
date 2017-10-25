@@ -4,4 +4,6 @@ class Tag < ApplicationRecord
   has_and_belongs_to_many :places
 
   validates :name, presence: true
+
+  paginates_per 8
 end

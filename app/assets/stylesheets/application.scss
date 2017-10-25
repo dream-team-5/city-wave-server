@@ -1,8 +1,9 @@
 /*
  *= require jquery-ui
  *= require tether
- *= require bootstrap-multiselect
  *= require rails_bootstrap_forms
+ *= require select2
+ *= require select2-bootstrap
  *
  *= require_self
 */
@@ -10,6 +11,7 @@
 @import 'bootstrap';
 @import 'bootstrap-errors';
 @import 'pagination';
+@import 'select2-custom';
 
 body {
   padding-top: 1.5rem;

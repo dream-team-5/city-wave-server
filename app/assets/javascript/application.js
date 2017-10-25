@@ -4,8 +4,8 @@
 //= require popper
 //= require tether
 //= require bootstrap
-//= require bootstrap-multiselect
 //= require jquery.form
+//= require select2
 
 // = require_tree .
 // = require_self

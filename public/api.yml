@@ -946,15 +946,12 @@ definitions:
       address:
         type: string
         example: адреса місця
-      location:
-        type: object
-        properties:
-          x:
-            type: integer
-            example: 1.0
-          y:
-            type: integer
-            example: 1.0
+      latitude:
+        type: integer
+        example: 1.0
+      longitude:
+        type: integer
+        example: 1.0
       contacts:
         type: string
         example: контакти

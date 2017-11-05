@@ -24,7 +24,7 @@ class Place < ApplicationRecord
 
   validates :address, presence: true
 
-  validates :location, presence: true
+  validates :latitude, :longitude, presence: true, numericality: true
 
   validates :price, numericality: { greater_than: 0 }, allow_nil: true
 

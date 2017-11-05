@@ -7,7 +7,7 @@ RSpec.describe PlaceDecorator do
     stub_model Place, \
       city_id: 1, category_id: 1, name: 'name',
       price: 42.24, description: 'description', address: 'address',
-      location: ActiveRecord::Point.new(1, 2), contacts: 'contacts'
+      latitude: 1.0, longitude: 1.0, contacts: 'contacts'
   end
 
   describe '#as_json' do
@@ -29,8 +29,8 @@ RSpec.describe PlaceDecorator do
           'id' => place.id, 'tag_ids' => [1, 2], 'name' => place.name,
           'city_id' => place.city_id, 'category_id' => place.category_id,
           'description' => place.description, 'photo_url' => 'photo_url',
-          'price' => place.price,'address' => place.address,
-          'location' => place.location, 'contacts' => place.contacts
+          'price' => place.price,'address' => place.address, 'contacts' => place.contacts,
+          'latitude' => place.latitude, 'longitude' => place.longitude
       end
     end
   end

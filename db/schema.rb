@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105134518) do
+ActiveRecord::Schema.define(version: 20171105142544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20171105134518) do
     t.string "name", null: false
     t.string "description", null: false
     t.string "address", null: false
-    t.point "location", null: false
     t.string "contacts"
     t.decimal "price"
     t.datetime "created_at", null: false
@@ -61,6 +60,8 @@ ActiveRecord::Schema.define(version: 20171105134518) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.float "latitude"
+    t.float "longitude"
     t.index "name gist_trgm_ops", name: "index_places_on_name_gist_trgm_ops", using: :gist
     t.index ["category_id"], name: "index_places_on_category_id"
     t.index ["city_id"], name: "index_places_on_city_id"

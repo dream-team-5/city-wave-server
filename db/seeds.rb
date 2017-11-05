@@ -50,7 +50,8 @@ filename = 'tmp/image.jpeg'
     name: Faker::HarryPotter.location,
     description: Faker::Lorem.paragraph,
     address: Faker::Address.street_address,
-    location: [Faker::Address.latitude, Faker::Address.longitude],
+    latitude: Faker::Address.latitude,
+    longitude: Faker::Address.longitude,
     contacts: Faker::PhoneNumber.cell_phone,
     price: Faker::Commerce.price,
     photo: File.open(filename)

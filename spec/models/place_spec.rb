@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Place, type: :model do
   it { should delegate_method(:as_json).to :decorate }
-  
+
   it { should belong_to :city }
 
   it { should belong_to :category }
@@ -25,7 +25,13 @@ RSpec.describe Place, type: :model do
 
   it { should validate_presence_of :address }
 
-  it { should validate_presence_of :location }
+  it { should validate_presence_of :latitude }
+
+  it { should validate_presence_of :longitude }
+
+  it { should validate_numericality_of :latitude }
+
+  it { should validate_numericality_of :longitude }
 
   it { should validate_numericality_of(:price).is_greater_than(0).allow_nil }
 end

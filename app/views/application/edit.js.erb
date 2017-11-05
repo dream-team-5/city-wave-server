@@ -1,6 +1,8 @@
 $('.modal .modal-body').html('<%= j render 'form' %>');
 
-$('.modal .modal-body select').select2();
+$('.modal .modal-body select').select2({
+  minimumResultsForSearch: Infinity
+});
 
 $('.modal').on('focus', function() { autosize($('.modal .modal-body textarea')); });
 

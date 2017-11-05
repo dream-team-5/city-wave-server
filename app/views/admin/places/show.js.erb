@@ -1,0 +1,11 @@
+$('.modal .modal-body').html('<%= j render 'show' %>');
+
+$('.modal .modal-body .locationpicker').locationpicker({
+  location: {
+    latitude: <%= resource.latitude %>,
+    longitude: <%= resource.longitude %>,
+  },
+  radius: 25
+});
+
+$('.modal').modal();

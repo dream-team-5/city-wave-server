@@ -1,0 +1,35 @@
+<%= bootstrap_form_for(resource.decorate, url: [:admin, resource]) do |f| %>
+  <div class="mb-3">
+    <%= f.file_field :photo, class: 'form-control-file' %>
+
+    <%= image_tag resource.photo, class: 'img-fluid', id: 'place_photo_preview' %>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-control-label">Location</label>
+
+    <%= f.hidden_field :latitude %>
+
+    <%= f.hidden_field :longitude %>
+
+    <div class="locationpicker"></div>
+  </div>
+
+  <%= f.text_field :address %>
+
+  <%= f.text_field :name %>
+
+  <%= f.text_area :description %>
+
+  <%= f.text_field :contacts %>
+
+  <%= f.number_field :price, step: :any %>
+
+  <%= f.collection_select :city_id, City.all, :id, :name, include_blank: true %>
+
+  <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
+
+  <%= f.collection_select :tag_ids, Tag.all, :id, :name, { label: 'Tags' }, { multiple: true } %>
+
+  <%= f.submit class: 'btn btn-primary btn-block' %>
+<% end %>

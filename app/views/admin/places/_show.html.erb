@@ -1,0 +1,68 @@
+<div class="mb-3">
+  <p class="lead">Id:</p>
+  <p><%= resource.id %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Photo:</p>
+  <%= image_tag resource.photo, class: 'img-fluid' %>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Location:</p>
+  <div class="locationpicker mb-3"></div>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Latitude:</p>
+  <p><%= resource.latitude %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Longitude:</p>
+  <p><%= resource.longitude %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Address:</p>
+  <p><%= resource.address %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Name:</p>
+  <p><%= resource.name %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Description:</p>
+  <p><%= resource.description %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Contacts:</p>
+  <p><%= resource.contacts %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Price:</p>
+  <p><%= resource.price %> UAH</p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">City:</p>
+  <p><%= resource.city.name %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Category:</p>
+  <p><%= resource.category.name %></p>
+</div>
+
+<div class="mb-3">
+  <p class="lead">Tags:</p>
+  <ul>
+    <% resource.tags.each do |tag| %>
+      <li><%= tag.name %></li>
+    <% end %>
+  </ul>
+</div>

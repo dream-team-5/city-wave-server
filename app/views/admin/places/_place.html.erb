@@ -1,0 +1,11 @@
+<div id="<%= dom_id place %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+  <%= place.name %>
+
+  <span>
+    <%= link_to 'View', [:admin, place], remote: true, class: 'btn btn-outline-info btn-sm' %>
+
+    <%= link_to 'Edit', [:edit, :admin, place], remote: true, class: 'btn btn-outline-secondary btn-sm' %>
+
+    <%= link_to 'Delete', [:admin, place], remote: true, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+  </span>
+</div>

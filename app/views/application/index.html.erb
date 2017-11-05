@@ -5,7 +5,7 @@
     <%= link_to 'Add new', [:new, :admin, resource_model.name.downcase], class: 'btn btn-primary d-inline-block float-right', remote: true %>
   </div>
 
-  <div class="list-group">
+  <div class="list-group mb-4">
     <%= render collection %>
   </div>
 

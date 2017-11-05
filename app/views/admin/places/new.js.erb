@@ -1,0 +1,39 @@
+$('.modal .modal-body').html('<%= j render 'form' %>');
+
+$('.modal .modal-body select').select2({
+  minimumResultsForSearch: Infinity
+});
+
+$('.modal .modal-body .locationpicker').locationpicker({
+  location: {
+    latitude: 49.2343165,
+    longitude: 28.4782473,
+  },
+  radius: 25,
+  inputBinding: {
+    latitudeInput: $('#place_latitude'),
+    longitudeInput: $('#place_longitude'),
+  }
+});
+
+$('#place_photo').change(function() {
+  var input = $('#place_photo')[0];
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) { $('#place_photo_preview').attr('src', e.target.result); }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+});
+
+$('.modal .modal-body form').ajaxForm({ dataType: 'script' });
+
+$('.modal').on('shown.bs.modal', function() {
+  autosize($('.modal .modal-body textarea'));
+
+  $('.modal .modal-body .locationpicker').locationpicker('autosize');
+});
+
+$('.modal').modal();

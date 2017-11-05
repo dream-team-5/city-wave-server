@@ -41,7 +41,7 @@ filename = 'tmp/image.jpeg'
 
 100.times.map do
   File.open(filename, 'wb+') do |file|
-    file.write open(Faker::LoremPixel.image('800x300')).read
+    file.write open('https://picsum.photos/800/300/?random').read
   end
 
   place = Place.create! \

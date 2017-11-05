@@ -964,10 +964,6 @@ definitions:
       photo_url:
         type: string
         example: http://placehold.it/300x300.png
-      open_hours:
-        $ref: '#/definitions/OpenHours'
-      duration:
-        $ref: '#/definitions/Duration'
   Tag:
     type: object
     properties:
@@ -1004,21 +1000,3 @@ definitions:
       text:
         type: string
         example: побажання
-  Duration:
-    type: object
-    properties:
-      begin:
-        type: string
-        example: '2017-10-05T17:31:55.338+03:00'
-      end:
-        type: string
-        example: '2017-11-05T17:31:55.338+03:00'
-  OpenHours:
-    type: object
-    properties:
-      begin:
-        type: string
-        example: '08:30:00'
-      end:
-        type: string
-        example: '19:00:00'

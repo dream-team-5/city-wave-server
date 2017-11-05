@@ -1110,10 +1110,6 @@ definitions:
       price:
         type: integer
         example: 42.25
-      open_hours:
-        $ref: '#/definitions/OpenHours'
-      duration:
-        $ref: '#/definitions/Duration'
       photo:
         # TODO: How to send photo?
         type: string
@@ -1149,21 +1145,3 @@ definitions:
       text:
         type: string
         example: текст побажання
-  Duration:
-    type: object
-    properties:
-      begin:
-        type: string
-        example: '2017-10-05T17:31:55.338+03:00'
-      end:
-        type: string
-        example: '2017-11-05T17:31:55.338+03:00'
-  OpenHours:
-    type: object
-    properties:
-      begin:
-        type: string
-        example: '08:30:00'
-      end:
-        type: string
-        example: '19:00:00'

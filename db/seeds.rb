@@ -4,18 +4,6 @@ module Helper
   DATES = [Date.parse('01.01.2017'), Date.parse('31.12.2017')]
 
   class << self
-    def open_hours
-      hours = [Faker::Time.between(HOURS[0], HOURS[1]), Faker::Time.between(HOURS[0], HOURS[1])]
-
-      hours.min..hours.max
-    end
-
-    def duration
-      dates = [Faker::Date.between(DATES[0], DATES[1]), Faker::Date.between(DATES[0], DATES[1])]
-
-      dates.min..dates.max
-    end
-
     def random_record type, limit=1
       result = type.offset(rand(type.count))
 
@@ -65,8 +53,6 @@ filename = 'tmp/image.jpeg'
     location: [Faker::Address.latitude, Faker::Address.longitude],
     contacts: Faker::PhoneNumber.cell_phone,
     price: Faker::Commerce.price,
-    open_hours: Helper.open_hours,
-    duration: Helper.duration,
     photo: File.open(filename)
 
   File.unlink filename

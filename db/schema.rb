@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012081924) do
+ActiveRecord::Schema.define(version: 20171105134518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,6 @@ ActiveRecord::Schema.define(version: 20171012081924) do
     t.point "location", null: false
     t.string "contacts"
     t.decimal "price"
-    t.tstzrange "open_hours"
-    t.daterange "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "photo_file_name"

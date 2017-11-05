@@ -7,9 +7,7 @@ RSpec.describe PlaceDecorator do
     stub_model Place, \
       city_id: 1, category_id: 1, name: 'name',
       price: 42.24, description: 'description', address: 'address',
-      location: ActiveRecord::Point.new(1, 2), contacts: 'contacts',
-      open_hours: Time.parse('8:00:00')..Time.parse('18:00:00'),
-      duration: Date.parse('01.01.2017')..Date.parse('01.01.2018')
+      location: ActiveRecord::Point.new(1, 2), contacts: 'contacts'
   end
 
   describe '#as_json' do
@@ -32,34 +30,8 @@ RSpec.describe PlaceDecorator do
           'city_id' => place.city_id, 'category_id' => place.category_id,
           'description' => place.description, 'photo_url' => 'photo_url',
           'price' => place.price,'address' => place.address,
-          'location' => place.location, 'contacts' => place.contacts,
-          'open_hours' => { begin: place.open_hours.begin, end: place.open_hours.end },
-          'duration' => { begin: place.duration.begin, end: place.duration.end }
+          'location' => place.location, 'contacts' => place.contacts
       end
-    end
-  end
-
-  describe '#open_hours' do
-    context do
-      let(:place) { stub_model Place }
-
-      its(:open_hours) { should be_nil }
-    end
-
-    context do
-      its(:open_hours) { should eq begin: place.open_hours.begin, end: place.open_hours.end }
-    end
-  end
-
-  describe '#duration' do
-    context do
-      let(:place) { stub_model Place }
-
-      its(:duration) { should be_nil }
-    end
-
-    context do
-      its(:duration) { should eq begin: place.duration.begin, end: place.duration.end }
     end
   end
 

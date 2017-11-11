@@ -3,13 +3,16 @@ class PlaceDecorator < Draper::Decorator
 
   def as_json options={}
     if options[:short]
-      super(options.reverse_merge only: [:id, :name, :address])
-        .merge 'photo_url' => photo_url
+      super options.reverse_merge \
+        only: [:id, :name, :address],
+        methods: [:photo_url]
     else
-      super(options.reverse_merge only: [
-        :id, :name, :category_id, :price, :city_id, :latitude,
-        :description, :longitude, :address, :contacts
-      ]).merge 'tag_ids' => tag_ids, 'photo_url' => photo_url
+      super options.reverse_merge \
+        only: [
+          :id, :name, :category_id, :price, :city_id, :latitude,
+          :description, :longitude, :address, :contacts
+        ],
+        methods: [:tag_ids, :photo_url]
     end
   end
 

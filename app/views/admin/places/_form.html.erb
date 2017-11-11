@@ -2,7 +2,7 @@
   <div class="mb-3">
     <%= f.file_field :photo, class: 'form-control-file' %>
 
-    <%= image_tag resource.photo, class: 'img-fluid', id: 'place_photo_preview' %>
+    <%= image_tag resource.photo(:mobile), class: 'img-fluid', id: 'place_photo_preview' %>
   </div>
 
   <div class="mb-3">

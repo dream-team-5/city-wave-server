@@ -1,6 +1,10 @@
 <%= bootstrap_form_for(resource.decorate, url: [:admin, resource]) do |f| %>
   <div class="mb-3">
-    <%= f.file_field :photo, class: 'form-control-file' %>
+    <% if resource.errors.key? :photo %>
+      <%= f.file_field :photo, class: 'form-control form-control-danger form-control-file' %>
+    <% else %>
+      <%= f.file_field :photo, class: 'form-control-file' %>
+    <% end %>
 
     <%= image_tag resource.photo(:mobile), class: 'img-fluid', id: 'place_photo_preview' if resource.persisted? %>
   </div>
@@ -25,11 +29,65 @@
 
   <%= f.number_field :price, step: :any %>
 
-  <%= f.collection_select :city_id, City.all, :id, :name, include_blank: true %>
+  <% if resource.errors.key? :city %>
+    <div class="form-group has-danger">
+      <%= f.label :city_id, class: 'form-control-label' %>
 
-  <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
+      <%= f.collection_select_without_bootstrap :city_id, City.all, :id, :name,
+        { include_blank: true }, { class: 'form-control form-control-danger' } %>
 
-  <%= f.collection_select :tag_ids, Tag.all, :id, :name, { label: 'Tags' }, { multiple: true } %>
+      <% resource.errors[:city].each do |error| %>
+        <span class="form-control-feedback"><%= error %></span>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :city_id, class: 'form-control-label' %>
+
+      <%= f.collection_select_without_bootstrap :city_id, City.all, :id, :name,
+        { include_blank: true }, { class: 'form-control' } %>
+    </div>
+  <% end %>
+
+  <% if resource.errors.key? :category %>
+    <div class="form-group has-danger">
+      <%= f.label :category_id, class: 'form-control-label' %>
+
+      <%= f.collection_select_without_bootstrap :category_id, Category.all, :id, :name,
+        { include_blank: true }, { class: 'form-control form-control-danger' } %>
+
+      <% resource.errors[:category].each do |error| %>
+        <span class="form-control-feedback"><%= error %></span>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :category_id, class: 'form-control-label' %>
+
+      <%= f.collection_select_without_bootstrap :category_id, Category.all, :id, :name,
+        { include_blank: true }, { class: 'form-control' } %>
+    </div>
+  <% end %>
+
+  <% if resource.errors.key? :tags %>
+    <div class="form-group has-danger">
+      <%= f.label :tag_ids, class: 'form-control-label' %>
+
+      <%= f.collection_select_without_bootstrap :tag_ids, Tag.all, :id, :name,
+        { include_blank: true }, { class: 'form-control form-control-danger' } %>
+
+      <% resource.errors[:tags].each do |error| %>
+        <span class="form-control-feedback"><%= error %></span>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :tag_ids, class: 'form-control-label' %>
+
+      <%= f.collection_select_without_bootstrap :tag_ids, Tag.all, :id, :name,
+        { include_blank: true }, { class: 'form-control' } %>
+    </div>
+  <% end %>
 
   <%= f.submit class: 'btn btn-primary btn-block' %>
 <% end %>

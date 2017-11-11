@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   rescue_from StandardError,
               Object,
-              with: -> e { render_error e.to_s, 500 }
+              with: -> e do
+                STDERR.puts "Unknown Error #{ e.class.name }: #{ e.to_s }"
+                STDERR.puts e.backtrace
+
+                render_error "#{ e.class.name }: #{ e.to_s }", 500
+              end
 
   rescue_from ActiveRecord::RecordInvalid,
               ActiveRecord::RecordNotSaved,

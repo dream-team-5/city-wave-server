@@ -44,4 +44,6 @@ Rails.application.routes.draw do
 
     resources :wishes
   end
+
+  mount GrapeSwaggerRails::Engine => '/swagger'
 end

@@ -21,6 +21,7 @@ gem 'bootstrap'
 gem 'bootstrap_form', git: 'https://github.com/bootstrap-ruby/rails-bootstrap-forms.git', branch: 'bootstrap-v4'
 gem 'bootstrap4-kaminari-views'
 gem 'select2-rails'
+gem 'grape-swagger-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.1'

@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Admin::SessionsController, type: :controller do
+  describe '#resource' do
+    its(:resource) { should eq described_model }
+  end
+
   describe '#resource_params' do
     let(:params) do
       ActionController::Parameters.new admin_session: { username: 'username', password: 'password' }

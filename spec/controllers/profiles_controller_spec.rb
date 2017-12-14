@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe ProfilesController, type: :controller do
+  describe '#resource' do
+    before { expect(subject).to receive(:current_user).and_return :current_user }
+
+    before { expect(described_model).to receive(:new).with(:current_user).and_return :profile }
+
+    its(:resource) { should eq :profile }
+  end
+
   describe '#create_resource_params' do
     its(:create_resource_params) { should be_nil }
   end

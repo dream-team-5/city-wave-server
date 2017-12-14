@@ -26,6 +26,7 @@ gem 'grape-swagger-rails'
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.1'
   gem 'dotenv-rails'
+  gem 'simplecov', :require => false
 end
 
 group :development do
